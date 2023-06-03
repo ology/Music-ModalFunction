@@ -6,7 +6,7 @@ our $VERSION = '0.0201';
 
 use Moo;
 use strictures 2;
-use AI::Prolog;
+use AI::Prolog ();
 use Carp qw(croak);
 use MIDI::Util qw(midi_format);
 use Music::Note ();
