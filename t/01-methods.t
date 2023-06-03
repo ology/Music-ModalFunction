@@ -7,9 +7,7 @@ use Test::More;
 use_ok 'Music::ModalFunction';
 
 subtest defaults => sub {
-    my $obj = new_ok 'Music::ModalFunction' => [
-#        verbose => 1,
-    ];
+    my $obj = new_ok 'Music::ModalFunction';
     is $obj->chord_note, undef, 'chord_note';
     is $obj->chord, undef, 'chord';
     is $obj->mode_note, undef, 'mode_note';
