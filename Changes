@@ -3,6 +3,7 @@ Revision history for Music-ModalFunction
 {{$NEXT}}
     - Select and display Roman numeral relationships.
     - Improve documentation.
+    - Improve test.
 
 0.0201 2023-06-03 08:29:45
     - Modularize code.
