@@ -196,7 +196,7 @@ pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2
     % the functions cannot be the same
     Key1Function \= Key2Function.
 
-% 
+% TODO
 roman_key(Mode, ModeRoman, Key, KeyRoman) :-
     chord_key(_, _, _, Mode, ModeFunction, ModeRoman),
     chord_key(_, _, _, Key, KeyFunction, KeyRoman),
