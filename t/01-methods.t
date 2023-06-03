@@ -1,4 +1,4 @@
-;#!/usr/bin/env perl
+#!/usr/bin/env perl
 use strict;
 use warnings;
 
@@ -24,7 +24,7 @@ subtest defaults => sub {
         '_modes';
     ok length($obj->_database), '_database';
     my @got = $obj->_database =~ /\n/g;
-    is scalar(@got), 596, '_database';
+    is scalar(@got), 602, '_database';
 };
 
 subtest chord_key => sub {
@@ -74,6 +74,17 @@ subtest pivot_chord_keys => sub {
     ];
     $got = $obj->pivot_chord_keys;
     $expect = 45;
+    is scalar(@$got), $expect, 'pivot_chord_keys';
+};
+
+subtest roman_key => sub {
+    my $obj = new_ok 'Music::ModalFunction' => [
+        mode       => 'ionian',
+        mode_roman => 'r_i',
+        key        => 'aeolian',
+    ];
+    my $got = $obj->roman_key;
+    my $expect = 0;
     is scalar(@$got), $expect, 'pivot_chord_keys';
 };
 
