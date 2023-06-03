@@ -33,8 +33,8 @@ subtest chord_key => sub {
     ];
     my $got = $obj->chord_key;
     my $expect = [
-        [ 'chord_key', 'g', 'ionian', 'd', 'maj', 'dominant' ],
-        [ 'chord_key', 'g', 'lydian', 'd', 'maj', 'dominant' ],
+        [ 'chord_key', 'd', 'maj', 'g', 'ionian', 'dominant' ],
+        [ 'chord_key', 'd', 'maj', 'g', 'lydian', 'dominant' ],
     ];
     is_deeply $got, $expect, 'chord_key';
 };
