@@ -281,7 +281,6 @@ sub _querydb {
     $self->_prolog->query($query);
     my @return;
     while (my $result = $self->_prolog->results) {
-#warn __PACKAGE__,' L',__LINE__,' R: ',join(',',@$result),"\n";
         push @return, $result;
     }
     return \@return;
