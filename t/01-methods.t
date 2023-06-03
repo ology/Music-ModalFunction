@@ -56,6 +56,15 @@ subtest pivot_chord_keys => sub {
         [ 'pivot_chord_keys', 'g', 'maj', 'c', 'lydian', 'dominant', 'd', 'mixolydian', 'subdominant' ],
     ];
     is_deeply $got, $expect, 'pivot_chord_keys';
+
+    $obj = new_ok 'Music::ModalFunction' => [
+        chord_note => 'g',
+        chord      => 'maj',
+        key        => 'aeolian',
+    ];
+    $got = $obj->pivot_chord_keys;
+    $expect = 45;
+    is scalar(@$got), $expect, 'pivot_chord_keys';
 };
 
 done_testing();
