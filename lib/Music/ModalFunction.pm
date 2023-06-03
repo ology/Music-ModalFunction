@@ -254,8 +254,8 @@ Arguments:
 
   pivot_chord_keys(ChordNote, Chord, ModeNote, Mode, ModeFunction, ModeRoman, KeyNote, Key, KeyFunction, KeyRoman)
 
-If defined, the argument in that position will be bound to that value
-(e.g. C<'_'> even). Otherwise an unbound variable is used.
+If defined, the argument in that position will be bound to that value.
+Otherwise an unbound variable is used.
 
 =cut
 
