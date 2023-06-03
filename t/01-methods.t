@@ -8,7 +8,7 @@ use_ok 'Music::ModalFunction';
 
 subtest defaults => sub {
     my $obj = new_ok 'Music::ModalFunction' => [
-        verbose => 1,
+#        verbose => 1,
     ];
     is $obj->chord_note, undef, 'chord_note';
     is $obj->chord, undef, 'chord';
@@ -18,10 +18,11 @@ subtest defaults => sub {
     is $obj->key_note, undef, 'key_note';
     is $obj->key, undef, 'key';
     is $obj->key_function, undef, 'key_function';
-    is $obj->verbose, 1, 'verbose';
+    is $obj->verbose, 0, 'verbose';
     is_deeply [sort keys %{ $obj->_modes }],
         [qw(aeolian dorian ionian locrian lydian mixolydian phrygian)],
         '_modes';
+    ok length $obj->_database, '_database';
 };
 
 subtest chord_key => sub {
