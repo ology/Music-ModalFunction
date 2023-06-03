@@ -24,8 +24,8 @@ use namespace::clean;
     key_function => 'dominant',
   );
   my $q = $m->chord_key;
-  # [['chord_key','d','maj','g','ionian','dominant','V'],
-  #  ['chord_key','d','maj','g','lydian','dominant','V']]
+  # [['chord_key','d','maj','g','ionian','dominant','r_V'],
+  #  ['chord_key','d','maj','g','lydian','dominant','r_V']]
 
   # In what mode(s) can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
@@ -35,12 +35,12 @@ use namespace::clean;
     key_function => 'subdominant',
   );
   $q = $m->pivot_chord_keys;
-  # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant','IV'],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant','IV'],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant','IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','dorian','subdominant','IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','ionian','subdominant','IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','mixolydian','subdominant','IV']]
+  # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant','r_IV'],
+  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant','r_IV'],
+  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant','r_IV'],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','dorian','subdominant','r_IV'],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','ionian','subdominant','r_IV'],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','mixolydian','subdominant','r_IV']]
 
 =head1 DESCRIPTION
 
