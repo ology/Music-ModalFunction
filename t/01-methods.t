@@ -23,6 +23,8 @@ subtest defaults => sub {
         [qw(aeolian dorian ionian locrian lydian mixolydian phrygian)],
         '_modes';
     ok length($obj->_database), '_database';
+    my @got = $obj->_database =~ /\n/g;
+    is scalar(@got), 596, '_database';
 };
 
 subtest chord_key => sub {
