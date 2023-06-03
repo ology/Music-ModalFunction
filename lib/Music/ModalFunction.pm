@@ -89,67 +89,67 @@ has _modes => (
 sub _build__modes {
     return {
         ionian => [
-            { chord => 'maj', roman => 'r_I',   function => 'tonic' },
-            { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
-            { chord => 'min', roman => 'r_iii', function => 'mediant' },
-            { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
-            { chord => 'maj', roman => 'r_V',   function => 'dominant' },
-            { chord => 'min', roman => 'r_vi',  function => 'submediant' },
-            { chord => 'dim', roman => 'r_vii', function => 'leading_tone' }
+            { chord => 'maj', roman => 'I',   function => 'tonic' },
+            { chord => 'min', roman => 'ii',  function => 'supertonic' },
+            { chord => 'min', roman => 'iii', function => 'mediant' },
+            { chord => 'maj', roman => 'IV',  function => 'subdominant' },
+            { chord => 'maj', roman => 'V',   function => 'dominant' },
+            { chord => 'min', roman => 'vi',  function => 'submediant' },
+            { chord => 'dim', roman => 'vii', function => 'leading_tone' }
         ],
         dorian => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
-            { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
-            { chord => 'maj', roman => 'r_III', function => 'mediant' },
-            { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
-            { chord => 'min', roman => 'r_v',   function => 'dominant' },
-            { chord => 'dim', roman => 'r_vi',  function => 'submediant' },
-            { chord => 'maj', roman => 'r_VII', function => 'subtonic' }
+            { chord => 'min', roman => 'i',   function => 'tonic' },
+            { chord => 'min', roman => 'ii',  function => 'supertonic' },
+            { chord => 'maj', roman => 'III', function => 'mediant' },
+            { chord => 'maj', roman => 'IV',  function => 'subdominant' },
+            { chord => 'min', roman => 'v',   function => 'dominant' },
+            { chord => 'dim', roman => 'vi',  function => 'submediant' },
+            { chord => 'maj', roman => 'VII', function => 'subtonic' }
         ],
         phrygian => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
-            { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
-            { chord => 'maj', roman => 'r_III', function => 'mediant' },
-            { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
-            { chord => 'dim', roman => 'r_v',   function => 'dominant' },
-            { chord => 'maj', roman => 'r_VI',  function => 'submediant' },
-            { chord => 'min', roman => 'r_vii', function => 'subtonic' }
+            { chord => 'min', roman => 'i',   function => 'tonic' },
+            { chord => 'maj', roman => 'II',  function => 'supertonic' },
+            { chord => 'maj', roman => 'III', function => 'mediant' },
+            { chord => 'min', roman => 'iv',  function => 'subdominant' },
+            { chord => 'dim', roman => 'v',   function => 'dominant' },
+            { chord => 'maj', roman => 'VI',  function => 'submediant' },
+            { chord => 'min', roman => 'vii', function => 'subtonic' }
         ],
         lydian => [
-            { chord => 'maj', roman => 'r_I',   function => 'tonic' },
-            { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
-            { chord => 'min', roman => 'r_iii', function => 'mediant' },
-            { chord => 'dim', roman => 'r_iv',  function => 'subdominant' },
-            { chord => 'maj', roman => 'r_V',   function => 'dominant' },
-            { chord => 'min', roman => 'r_vi',  function => 'submediant' },
-            { chord => 'min', roman => 'r_vii', function => 'leading_tone' }
+            { chord => 'maj', roman => 'I',   function => 'tonic' },
+            { chord => 'maj', roman => 'II',  function => 'supertonic' },
+            { chord => 'min', roman => 'iii', function => 'mediant' },
+            { chord => 'dim', roman => 'iv',  function => 'subdominant' },
+            { chord => 'maj', roman => 'V',   function => 'dominant' },
+            { chord => 'min', roman => 'vi',  function => 'submediant' },
+            { chord => 'min', roman => 'vii', function => 'leading_tone' }
         ],
         mixolydian => [
-            { chord => 'maj', roman => 'r_I',   function => 'tonic' },
-            { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
-            { chord => 'dim', roman => 'r_iii', function => 'mediant' },
-            { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
-            { chord => 'min', roman => 'r_v',   function => 'dominant' },
-            { chord => 'min', roman => 'r_vi',  function => 'submediant' },
-            { chord => 'maj', roman => 'r_VII', function => 'subtonic' }
+            { chord => 'maj', roman => 'I',   function => 'tonic' },
+            { chord => 'min', roman => 'ii',  function => 'supertonic' },
+            { chord => 'dim', roman => 'iii', function => 'mediant' },
+            { chord => 'maj', roman => 'IV',  function => 'subdominant' },
+            { chord => 'min', roman => 'v',   function => 'dominant' },
+            { chord => 'min', roman => 'vi',  function => 'submediant' },
+            { chord => 'maj', roman => 'VII', function => 'subtonic' }
         ],
         aeolian => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
-            { chord => 'dim', roman => 'r_ii',  function => 'supertonic' },
-            { chord => 'maj', roman => 'r_III', function => 'mediant' },
-            { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
-            { chord => 'min', roman => 'r_v',   function => 'dominant' },
-            { chord => 'maj', roman => 'r_VI',  function => 'submediant' },
-            { chord => 'maj', roman => 'r_VII', function => 'subtonic' }
+            { chord => 'min', roman => 'i',   function => 'tonic' },
+            { chord => 'dim', roman => 'ii',  function => 'supertonic' },
+            { chord => 'maj', roman => 'III', function => 'mediant' },
+            { chord => 'min', roman => 'iv',  function => 'subdominant' },
+            { chord => 'min', roman => 'v',   function => 'dominant' },
+            { chord => 'maj', roman => 'VI',  function => 'submediant' },
+            { chord => 'maj', roman => 'VII', function => 'subtonic' }
         ],
         locrian => [
-            { chord => 'dim', roman => 'r_i',   function => 'tonic' },
-            { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
-            { chord => 'min', roman => 'r_iii', function => 'mediant' },
-            { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
-            { chord => 'maj', roman => 'r_V',   function => 'dominant' },
-            { chord => 'maj', roman => 'r_VI',  function => 'submediant' },
-            { chord => 'min', roman => 'r_vii', function => 'subtonic' }
+            { chord => 'dim', roman => 'i',   function => 'tonic' },
+            { chord => 'maj', roman => 'II',  function => 'supertonic' },
+            { chord => 'min', roman => 'iii', function => 'mediant' },
+            { chord => 'min', roman => 'iv',  function => 'subdominant' },
+            { chord => 'maj', roman => 'V',   function => 'dominant' },
+            { chord => 'maj', roman => 'VI',  function => 'submediant' },
+            { chord => 'min', roman => 'vii', function => 'subtonic' }
         ]
     }
 }
