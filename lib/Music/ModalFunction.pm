@@ -8,7 +8,6 @@ use Moo;
 use strictures 2;
 use AI::Prolog;
 use Carp qw(croak);
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util);
 use MIDI::Util qw(midi_format);
 use Music::Note ();
 use Music::Scales qw(get_scale_notes);
