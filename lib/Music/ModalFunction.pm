@@ -193,11 +193,11 @@ Create a new C<Music::ModalFunction> object.
 
   $q = $m->chord_key;
 
-Ask the database a question about what chords.
+Ask the database a question about what chords are in what keys.
 
 Arguments:
 
-  chord_key(mode_note, mode, chord_note, chord, key_function)
+  chord_key(ModeNote, Mode, ChordNote, Chord, KeyFunction)
 
 If defined, the argument in that position will be bound to that value
 (e.g. C<'_'> even). Otherwise an unbound variable is used.
@@ -213,6 +213,42 @@ sub chord_key {
         defined $self->chord_note   ? $self->chord_note   : 'ChordNote',
         defined $self->chord        ? $self->chord        : 'Chord',
         defined $self->key_function ? $self->key_function : 'KeyFunction',
+    ;
+    $prolog->query($query);
+    my @return;
+    while (my $result = $prolog->results) {
+        push @return, $result;
+    }
+    return \@return;
+}
+
+=head2 pivot_chord_keys
+
+  $q = $m->pivot_chord_keys;
+
+Ask the database a question about what chords share common keys.
+
+Arguments:
+
+  pivot_chord_keys(ChordNote, Chord, ModeNote, Mode, ModeFunction, KeyNote, Key, KeyFunction)
+
+If defined, the argument in that position will be bound to that value
+(e.g. C<'_'> even). Otherwise an unbound variable is used.
+
+=cut
+
+sub pivot_chord_keys {
+    my ($self) = @_;
+    my $prolog = AI::Prolog->new($self->_database);
+    my $query = sprintf 'chord_key(%s, %s, %s, %s, %s).',
+        defined $self->chord_note    ? $self->chord_note    : 'ChordNote',
+        defined $self->chord         ? $self->chord         : 'Chord',
+        defined $self->mode_note     ? $self->mode_note     : 'ModeNote',
+        defined $self->mode          ? $self->mode          : 'Mode',
+        defined $self->mode_function ? $self->mode_function : 'ModeFunction',
+        defined $self->key_note      ? $self->key_note      : 'KeyNote',
+        defined $self->key           ? $self->key           : 'Key',
+        defined $self->key_function  ? $self->key_function  : 'KeyFunction',
     ;
     $prolog->query($query);
     my @return;
