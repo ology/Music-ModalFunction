@@ -24,8 +24,8 @@ use namespace::clean;
     key_function => 'dominant',
   );
   my $q = $m->chord_key;
-  # [['chord_key','d','maj','g','ionian','dominant'],
-  #  ['chord_key','d','maj','g','lydian','dominant']]
+  # [['chord_key','d','maj','g','ionian','dominant','V'],
+  #  ['chord_key','d','maj','g','lydian','dominant','V']]
 
   # In what mode(s) can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
@@ -35,12 +35,12 @@ use namespace::clean;
     key_function => 'subdominant',
   );
   $q = $m->pivot_chord_keys;
-  # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant' ],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant' ],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant' ],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','dorian','subdominant' ],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','ionian','subdominant' ],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','mixolydian','subdominant' ]]
+  # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant','IV'],
+  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant','IV'],
+  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant','IV'],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','dorian','subdominant','IV'],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','ionian','subdominant','IV'],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','mixolydian','subdominant','IV']]
 
 =head1 DESCRIPTION
 
@@ -48,8 +48,8 @@ C<Music::ModalFunction> allows querying of a musical database of
 Prolog facts and rules that bind notes, chords, modes, keys and
 diatonic functionality.
 
-* Currently there is a database of facts called C<chord_key/5> and one
-rule named C<pivot_chord_keys/8>.
+* Currently there is a database of facts called C<chord_key/6> and one
+rule named C<pivot_chord_keys/10>.
 
 =head1 ATTRIBUTES
 
@@ -63,17 +63,21 @@ rule named C<pivot_chord_keys/8>.
 
 =head2 mode_function
 
+=head2 mode_roman
+
 =head2 key_note
 
 =head2 key
 
 =head2 key_function
 
+=head2 key_roman
+
 =head2 verbose
 
 =cut
 
-has [qw(chord_note chord mode_note mode mode_function key_note key key_function)] => (
+has [qw(chord_note chord mode_note mode mode_function mode_roman key_note key key_function key_roman)] => (
     is => 'ro',
 );
 
@@ -89,67 +93,67 @@ has _modes => (
 sub _build__modes {
     return {
         ionian => [
-            { chord => 'maj', roman => 'I',   function => 'tonic' },
-            { chord => 'min', roman => 'ii',  function => 'supertonic' },
-            { chord => 'min', roman => 'iii', function => 'mediant' },
-            { chord => 'maj', roman => 'IV',  function => 'subdominant' },
-            { chord => 'maj', roman => 'V',   function => 'dominant' },
-            { chord => 'min', roman => 'vi',  function => 'submediant' },
-            { chord => 'dim', roman => 'vii', function => 'leading_tone' }
+            { chord => 'maj', roman => 'r_I',   function => 'tonic' },
+            { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
+            { chord => 'min', roman => 'r_iii', function => 'mediant' },
+            { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
+            { chord => 'maj', roman => 'r_V',   function => 'dominant' },
+            { chord => 'min', roman => 'r_vi',  function => 'submediant' },
+            { chord => 'dim', roman => 'r_vii', function => 'leading_tone' }
         ],
         dorian => [
-            { chord => 'min', roman => 'i',   function => 'tonic' },
-            { chord => 'min', roman => 'ii',  function => 'supertonic' },
-            { chord => 'maj', roman => 'III', function => 'mediant' },
-            { chord => 'maj', roman => 'IV',  function => 'subdominant' },
-            { chord => 'min', roman => 'v',   function => 'dominant' },
-            { chord => 'dim', roman => 'vi',  function => 'submediant' },
-            { chord => 'maj', roman => 'VII', function => 'subtonic' }
+            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
+            { chord => 'maj', roman => 'r_III', function => 'mediant' },
+            { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
+            { chord => 'min', roman => 'r_v',   function => 'dominant' },
+            { chord => 'dim', roman => 'r_vi',  function => 'submediant' },
+            { chord => 'maj', roman => 'r_VII', function => 'subtonic' }
         ],
         phrygian => [
-            { chord => 'min', roman => 'i',   function => 'tonic' },
-            { chord => 'maj', roman => 'II',  function => 'supertonic' },
-            { chord => 'maj', roman => 'III', function => 'mediant' },
-            { chord => 'min', roman => 'iv',  function => 'subdominant' },
-            { chord => 'dim', roman => 'v',   function => 'dominant' },
-            { chord => 'maj', roman => 'VI',  function => 'submediant' },
-            { chord => 'min', roman => 'vii', function => 'subtonic' }
+            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
+            { chord => 'maj', roman => 'r_III', function => 'mediant' },
+            { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
+            { chord => 'dim', roman => 'r_v',   function => 'dominant' },
+            { chord => 'maj', roman => 'r_VI',  function => 'submediant' },
+            { chord => 'min', roman => 'r_vii', function => 'subtonic' }
         ],
         lydian => [
-            { chord => 'maj', roman => 'I',   function => 'tonic' },
-            { chord => 'maj', roman => 'II',  function => 'supertonic' },
-            { chord => 'min', roman => 'iii', function => 'mediant' },
-            { chord => 'dim', roman => 'iv',  function => 'subdominant' },
-            { chord => 'maj', roman => 'V',   function => 'dominant' },
-            { chord => 'min', roman => 'vi',  function => 'submediant' },
-            { chord => 'min', roman => 'vii', function => 'leading_tone' }
+            { chord => 'maj', roman => 'r_I',   function => 'tonic' },
+            { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
+            { chord => 'min', roman => 'r_iii', function => 'mediant' },
+            { chord => 'dim', roman => 'r_iv',  function => 'subdominant' },
+            { chord => 'maj', roman => 'r_V',   function => 'dominant' },
+            { chord => 'min', roman => 'r_vi',  function => 'submediant' },
+            { chord => 'min', roman => 'r_vii', function => 'leading_tone' }
         ],
         mixolydian => [
-            { chord => 'maj', roman => 'I',   function => 'tonic' },
-            { chord => 'min', roman => 'ii',  function => 'supertonic' },
-            { chord => 'dim', roman => 'iii', function => 'mediant' },
-            { chord => 'maj', roman => 'IV',  function => 'subdominant' },
-            { chord => 'min', roman => 'v',   function => 'dominant' },
-            { chord => 'min', roman => 'vi',  function => 'submediant' },
-            { chord => 'maj', roman => 'VII', function => 'subtonic' }
+            { chord => 'maj', roman => 'r_I',   function => 'tonic' },
+            { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
+            { chord => 'dim', roman => 'r_iii', function => 'mediant' },
+            { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
+            { chord => 'min', roman => 'r_v',   function => 'dominant' },
+            { chord => 'min', roman => 'r_vi',  function => 'submediant' },
+            { chord => 'maj', roman => 'r_VII', function => 'subtonic' }
         ],
         aeolian => [
-            { chord => 'min', roman => 'i',   function => 'tonic' },
-            { chord => 'dim', roman => 'ii',  function => 'supertonic' },
-            { chord => 'maj', roman => 'III', function => 'mediant' },
-            { chord => 'min', roman => 'iv',  function => 'subdominant' },
-            { chord => 'min', roman => 'v',   function => 'dominant' },
-            { chord => 'maj', roman => 'VI',  function => 'submediant' },
-            { chord => 'maj', roman => 'VII', function => 'subtonic' }
+            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'dim', roman => 'r_ii',  function => 'supertonic' },
+            { chord => 'maj', roman => 'r_III', function => 'mediant' },
+            { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
+            { chord => 'min', roman => 'r_v',   function => 'dominant' },
+            { chord => 'maj', roman => 'r_VI',  function => 'submediant' },
+            { chord => 'maj', roman => 'r_VII', function => 'subtonic' }
         ],
         locrian => [
-            { chord => 'dim', roman => 'i',   function => 'tonic' },
-            { chord => 'maj', roman => 'II',  function => 'supertonic' },
-            { chord => 'min', roman => 'iii', function => 'mediant' },
-            { chord => 'min', roman => 'iv',  function => 'subdominant' },
-            { chord => 'maj', roman => 'V',   function => 'dominant' },
-            { chord => 'maj', roman => 'VI',  function => 'submediant' },
-            { chord => 'min', roman => 'vii', function => 'subtonic' }
+            { chord => 'dim', roman => 'r_i',   function => 'tonic' },
+            { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
+            { chord => 'min', roman => 'r_iii', function => 'mediant' },
+            { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
+            { chord => 'maj', roman => 'r_V',   function => 'dominant' },
+            { chord => 'maj', roman => 'r_VI',  function => 'submediant' },
+            { chord => 'min', roman => 'r_vii', function => 'subtonic' }
         ]
     }
 }
@@ -176,18 +180,19 @@ sub _build__database {
             for my $pitch (@pitches) {
                 my $chord = $self->_modes->{$mode}[$i]{chord};
                 my $function = $self->_modes->{$mode}[$i]{function};
-                $database .= "chord_key($pitch, $chord, $mode_base, $mode, $function).\n";
+                my $roman = $self->_modes->{$mode}[$i]{roman};
+                $database .= "chord_key($pitch, $chord, $mode_base, $mode, $function, $roman).\n";
                 $i++;
             }
         }
     }
     $database .=<<'RULE';
 % Can a chord in one key function in a second?
-pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key2Note, Key2, Key2Function) :-
+pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2Note, Key2, Key2Function, Key2Roman) :-
     % bind the chord to the function of the first key
-    chord_key(ChordNote, Chord, Key1Note, Key1, Key1Function),
+    chord_key(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman),
     % bind the chord to the function of the second key
-    chord_key(ChordNote, Chord, Key2Note, Key2, Key2Function),
+    chord_key(ChordNote, Chord, Key2Note, Key2, Key2Function, Key2Roman),
     % the functions cannot be the same
     Key1Function \= Key2Function.
 RULE
@@ -219,7 +224,7 @@ Ask the database a question about what chords are in what keys.
 
 Arguments:
 
-  chord_key(ChordNote, Chord, KeyNote, Key, KeyFunction)
+  chord_key(ChordNote, Chord, KeyNote, Key, KeyFunction, KeyRoman)
 
 If defined, the argument in that position will be bound to that value
 (e.g. C<'_'> even). Otherwise an unbound variable is used.
@@ -228,12 +233,13 @@ If defined, the argument in that position will be bound to that value
 
 sub chord_key {
     my ($self) = @_;
-    my $query = sprintf 'chord_key(%s, %s, %s, %s, %s).',
+    my $query = sprintf 'chord_key(%s, %s, %s, %s, %s, %s).',
         defined $self->chord_note   ? $self->chord_note   : 'ChordNote',
         defined $self->chord        ? $self->chord        : 'Chord',
         defined $self->key_note     ? $self->key_note     : 'KeyNote',
         defined $self->key          ? $self->key          : 'Key',
         defined $self->key_function ? $self->key_function : 'KeyFunction',
+        defined $self->key_roman    ? $self->key_roman    : 'KeyRoman',
     ;
     return $self->_querydb($query);
 }
@@ -246,7 +252,7 @@ Ask the database a question about what chords share common keys.
 
 Arguments:
 
-  pivot_chord_keys(ChordNote, Chord, ModeNote, Mode, ModeFunction, KeyNote, Key, KeyFunction)
+  pivot_chord_keys(ChordNote, Chord, ModeNote, Mode, ModeFunction, ModeRoman, KeyNote, Key, KeyFunction, KeyRoman)
 
 If defined, the argument in that position will be bound to that value
 (e.g. C<'_'> even). Otherwise an unbound variable is used.
@@ -255,15 +261,17 @@ If defined, the argument in that position will be bound to that value
 
 sub pivot_chord_keys {
     my ($self) = @_;
-    my $query = sprintf 'pivot_chord_keys(%s, %s, %s, %s, %s, %s, %s, %s).',
+    my $query = sprintf 'pivot_chord_keys(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s).',
         defined $self->chord_note    ? $self->chord_note    : 'ChordNote',
         defined $self->chord         ? $self->chord         : 'Chord',
         defined $self->mode_note     ? $self->mode_note     : 'ModeNote',
         defined $self->mode          ? $self->mode          : 'Mode',
         defined $self->mode_function ? $self->mode_function : 'ModeFunction',
+        defined $self->mode_roman    ? $self->mode_roman    : 'ModeRoman',
         defined $self->key_note      ? $self->key_note      : 'KeyNote',
         defined $self->key           ? $self->key           : 'Key',
         defined $self->key_function  ? $self->key_function  : 'KeyFunction',
+        defined $self->key_roman     ? $self->key_roman     : 'KeyRoman',
     ;
     return $self->_querydb($query);
 }
@@ -273,6 +281,7 @@ sub _querydb {
     $self->_prolog->query($query);
     my @return;
     while (my $result = $self->_prolog->results) {
+#warn __PACKAGE__,' L',__LINE__,' R: ',join(',',@$result),"\n";
         push @return, $result;
     }
     return \@return;
