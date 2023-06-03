@@ -5,6 +5,7 @@ Revision history for Music-ModalFunction
 0.0300 2023-06-03 14:07:39
     - Update comments and verbose output.
     - Improved test.
+    - Add the roman_key() rule.
 
 0.0202 2023-06-03 10:15:54
     - Select and display Roman numeral relationships.
