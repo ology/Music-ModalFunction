@@ -1,0 +1,5 @@
+Revision history for Music-ModalFunction
+
+{{$NEXT}}
+    - Mint with Dist::Zilla.
+    - Port code from a related script in my Music repo.
