@@ -38,4 +38,23 @@ subtest chord_key => sub {
     is_deeply $got, $expect, 'chord_key';
 };
 
+subtest pivot_chord_keys => sub {
+    my $obj = new_ok 'Music::ModalFunction' => [
+        chord_note   => 'g',
+        chord        => 'maj',
+        mode_note    => 'c',
+        key_function => 'subdominant',
+    ];
+    my $got = $obj->pivot_chord_keys;
+    my $expect = [
+        [ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'd', 'dorian', 'subdominant' ],
+        [ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'd', 'ionian', 'subdominant' ],
+        [ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'd', 'mixolydian', 'subdominant' ],
+        [ 'pivot_chord_keys', 'g', 'maj', 'c', 'lydian', 'dominant', 'd', 'dorian', 'subdominant' ],
+        [ 'pivot_chord_keys', 'g', 'maj', 'c', 'lydian', 'dominant', 'd', 'ionian', 'subdominant' ],
+        [ 'pivot_chord_keys', 'g', 'maj', 'c', 'lydian', 'dominant', 'd', 'mixolydian', 'subdominant' ],
+    ];
+    is_deeply $got, $expect, 'pivot_chord_keys';
+};
+
 done_testing();
