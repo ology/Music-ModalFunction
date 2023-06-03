@@ -170,7 +170,7 @@ sub _build__database {
         for my $mode (sort keys %{ $self->_modes }) {
             my @pitches;
             my @notes = get_scale_notes($base, $mode);
-            warn "$base $mode @notes\n" if $self->verbose;
+            warn "Basics: $base $mode [@notes]\n" if $self->verbose;
             for my $note (@notes) {
                 my $n = Music::Note->new($note, 'isobase');
                 $n->en_eq('flat') if $note =~ /#/;
@@ -196,7 +196,7 @@ pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2
     % the functions cannot be the same
     Key1Function \= Key2Function.
 RULE
-    warn "$database\n" if $self->verbose;
+    warn "Database: $database\n" if $self->verbose;
     return $database;
 }
 
