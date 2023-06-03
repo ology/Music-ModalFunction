@@ -178,9 +178,9 @@ sub _build__database {
             }
             my $i = 0;
             for my $pitch (@pitches) {
-                my $chord = $self->_modes->{$mode}[$i]{chord};
+                my $chord    = $self->_modes->{$mode}[$i]{chord};
                 my $function = $self->_modes->{$mode}[$i]{function};
-                my $roman = $self->_modes->{$mode}[$i]{roman};
+                my $roman    = $self->_modes->{$mode}[$i]{roman};
                 $database .= "chord_key($pitch, $chord, $mode_base, $mode, $function, $roman).\n";
                 $i++;
             }
