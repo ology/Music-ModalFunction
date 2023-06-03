@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Modularize code.
 
 0.0200 2023-06-03 07:28:46
     - Change the chord_key() argument order to match pivot_chord_keys().
