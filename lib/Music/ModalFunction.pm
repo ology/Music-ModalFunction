@@ -195,6 +195,14 @@ RULE
     return $database;
 }
 
+has _prolog => (
+    is => 'lazy',
+);
+sub _build__prolog {
+    my ($self) = @_;
+    return AI::Prolog->new($self->_database);
+}
+
 =head1 METHODS
 
 =head2 new
@@ -220,7 +228,6 @@ If defined, the argument in that position will be bound to that value
 
 sub chord_key {
     my ($self) = @_;
-    my $prolog = AI::Prolog->new($self->_database);
     my $query = sprintf 'chord_key(%s, %s, %s, %s, %s).',
         defined $self->chord_note   ? $self->chord_note   : 'ChordNote',
         defined $self->chord        ? $self->chord        : 'Chord',
@@ -228,12 +235,7 @@ sub chord_key {
         defined $self->key          ? $self->key          : 'Key',
         defined $self->key_function ? $self->key_function : 'KeyFunction',
     ;
-    $prolog->query($query);
-    my @return;
-    while (my $result = $prolog->results) {
-        push @return, $result;
-    }
-    return \@return;
+    return $self->_querydb($query);
 }
 
 =head2 pivot_chord_keys
@@ -253,7 +255,6 @@ If defined, the argument in that position will be bound to that value
 
 sub pivot_chord_keys {
     my ($self) = @_;
-    my $prolog = AI::Prolog->new($self->_database);
     my $query = sprintf 'pivot_chord_keys(%s, %s, %s, %s, %s, %s, %s, %s).',
         defined $self->chord_note    ? $self->chord_note    : 'ChordNote',
         defined $self->chord         ? $self->chord         : 'Chord',
@@ -264,9 +265,14 @@ sub pivot_chord_keys {
         defined $self->key           ? $self->key           : 'Key',
         defined $self->key_function  ? $self->key_function  : 'KeyFunction',
     ;
-    $prolog->query($query);
+    return $self->_querydb($query);
+}
+
+sub _querydb {
+    my ($self, $query) = @_;
+    $self->_prolog->query($query);
     my @return;
-    while (my $result = $prolog->results) {
+    while (my $result = $self->_prolog->results) {
         push @return, $result;
     }
     return \@return;
