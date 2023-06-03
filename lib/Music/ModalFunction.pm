@@ -240,7 +240,7 @@ If defined, the argument in that position will be bound to that value
 sub pivot_chord_keys {
     my ($self) = @_;
     my $prolog = AI::Prolog->new($self->_database);
-    my $query = sprintf 'chord_key(%s, %s, %s, %s, %s).',
+    my $query = sprintf 'pivot_chord_keys(%s, %s, %s, %s, %s, %s, %s, %s).',
         defined $self->chord_note    ? $self->chord_note    : 'ChordNote',
         defined $self->chord         ? $self->chord         : 'Chord',
         defined $self->mode_note     ? $self->mode_note     : 'ModeNote',
