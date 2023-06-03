@@ -17,17 +17,17 @@ use namespace::clean;
 
   use Music::ModalFunction ();
 
-  # What modes have a Dmaj dominant chord?
+  # What keys have a Dmaj dominant chord?
   my $m = Music::ModalFunction->new(
     chord_note   => 'd',
     chord        => 'maj',
     key_function => 'dominant',
   );
   my $q = $m->chord_key;
-  # [[ 'chord_key', 'g', 'ionian', 'd', 'maj', 'dominant' ],
-  #  [ 'chord_key', 'g', 'lydian', 'd', 'maj', 'dominant' ]]
+  # [['chord_key','g','ionian','d','maj','dominant'],
+  #  ['chord_key','g','lydian','d','maj','dominant']]
 
-  # In what modes can a Gmaj chord function as a subdominant pivot chord?
+  # In what keys can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
     chord_note   => 'g',
     chord        => 'maj',
@@ -35,12 +35,12 @@ use namespace::clean;
     key_function => 'subdominant',
   );
   $q = $m->pivot_chord_keys;
-  # [[ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'd', 'dorian', 'subdominant' ],
-  #  [ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'd', 'ionian', 'subdominant' ],
-  #  [ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'd', 'mixolydian', 'subdominant' ],
-  #  [ 'pivot_chord_keys', 'g', 'maj', 'c', 'lydian', 'dominant', 'd', 'dorian', 'subdominant' ],
-  #  [ 'pivot_chord_keys', 'g', 'maj', 'c', 'lydian', 'dominant', 'd', 'ionian', 'subdominant' ],
-  #  [ 'pivot_chord_keys', 'g', 'maj', 'c', 'lydian', 'dominant', 'd', 'mixolydian', 'subdominant' ]]
+  # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant' ],
+  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant' ],
+  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant' ],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','dorian','subdominant' ],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','ionian','subdominant' ],
+  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','mixolydian','subdominant' ]]
 
 =head1 DESCRIPTION
 
