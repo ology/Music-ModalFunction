@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Update comments and verbose output.
 
 0.0202 2023-06-03 10:15:54
     - Select and display Roman numeral relationships.
