@@ -24,8 +24,8 @@ use namespace::clean;
     key_function => 'dominant',
   );
   my $q = $m->chord_key;
-  # [['chord_key','g','ionian','d','maj','dominant'],
-  #  ['chord_key','g','lydian','d','maj','dominant']]
+  # [['chord_key','d','maj','g','ionian','dominant'],
+  #  ['chord_key','d','maj','g','lydian','dominant']]
 
   # In what key(s) can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
@@ -211,7 +211,7 @@ Ask the database a question about what chords are in what keys.
 
 Arguments:
 
-  chord_key(ModeNote, Mode, ChordNote, Chord, KeyFunction)
+  chord_key(ChordNote, Chord, KeyNote, Key, KeyFunction)
 
 If defined, the argument in that position will be bound to that value
 (e.g. C<'_'> even). Otherwise an unbound variable is used.
@@ -222,10 +222,10 @@ sub chord_key {
     my ($self) = @_;
     my $prolog = AI::Prolog->new($self->_database);
     my $query = sprintf 'chord_key(%s, %s, %s, %s, %s).',
-        defined $self->mode_note    ? $self->mode_note    : 'ModeNote',
-        defined $self->mode         ? $self->mode         : 'Mode',
         defined $self->chord_note   ? $self->chord_note   : 'ChordNote',
         defined $self->chord        ? $self->chord        : 'Chord',
+        defined $self->key_note     ? $self->key_note     : 'KeyNote',
+        defined $self->key          ? $self->key          : 'Key',
         defined $self->key_function ? $self->key_function : 'KeyFunction',
     ;
     $prolog->query($query);
