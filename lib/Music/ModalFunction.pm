@@ -186,7 +186,7 @@ sub _build__database {
             }
         }
     }
-    $database .=<<'RULE';
+    $database .= <<'RULES';
 % Can a chord in one key function in a second?
 pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2Note, Key2, Key2Function, Key2Roman) :-
     % bind the chord to the function of the first key
@@ -195,7 +195,13 @@ pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2
     chord_key(ChordNote, Chord, Key2Note, Key2, Key2Function, Key2Roman),
     % the functions cannot be the same
     Key1Function \= Key2Function.
-RULE
+
+% 
+roman_key(Mode, ModeRoman, Key, KeyRoman) :-
+    chord_key(_, _, _, Mode, ModeFunction, ModeRoman),
+    chord_key(_, _, _, Key, KeyFunction, KeyRoman),
+    ModeFunction \= KeyFunction.
+RULES
     warn "Database: $database\n" if $self->verbose;
     return $database;
 }
@@ -226,8 +232,8 @@ Arguments:
 
   chord_key(ChordNote, Chord, KeyNote, Key, KeyFunction, KeyRoman)
 
-If defined, the argument in that position will be bound to that value
-(e.g. C<'_'> even). Otherwise an unbound variable is used.
+If defined, argument values will be bound to a variable. Otherwise an
+unbound variable is used.
 
 =cut
 
@@ -254,8 +260,8 @@ Arguments:
 
   pivot_chord_keys(ChordNote, Chord, ModeNote, Mode, ModeFunction, ModeRoman, KeyNote, Key, KeyFunction, KeyRoman)
 
-If defined, the argument in that position will be bound to that value.
-Otherwise an unbound variable is used.
+If defined, argument values will be bound to a variable. Otherwise an
+unbound variable is used.
 
 =cut
 
@@ -272,6 +278,33 @@ sub pivot_chord_keys {
         defined $self->key           ? $self->key           : 'Key',
         defined $self->key_function  ? $self->key_function  : 'KeyFunction',
         defined $self->key_roman     ? $self->key_roman     : 'KeyRoman',
+    ;
+    return $self->_querydb($query);
+}
+
+=head2 roman_key
+
+  $q = $m->roman_key;
+
+Ask the database a question about what Roman numeral functional chords
+share common keys.
+
+Arguments:
+
+  roman_key(Mode, ModeRoman, Key, KeyRoman)
+
+If defined, argument values will be bound to a variable. Otherwise an
+unbound variable is used.
+
+=cut
+
+sub roman_key {
+    my ($self) = @_;
+    my $query = sprintf 'roman_key(%s, %s, %s, %s).',
+        defined $self->mode       ? $self->mode       : 'Mode',
+        defined $self->mode_roman ? $self->mode_roman : 'ModeRoman',
+        defined $self->key        ? $self->key        : 'Key',
+        defined $self->key_roman  ? $self->key_roman  : 'KeyRoman',
     ;
     return $self->_querydb($query);
 }
