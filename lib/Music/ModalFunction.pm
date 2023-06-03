@@ -185,9 +185,9 @@ sub _build__database {
 % Can a chord in one key function in a second?
 pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key2Note, Key2, Key2Function) :-
     % bind the chord to the function of the first key
-    chord_key(Key1Note, Key1, ChordNote, Chord, Key1Function),
+    chord_key(ChordNote, Chord, Key1Note, Key1, Key1Function),
     % bind the chord to the function of the second key
-    chord_key(Key2Note, Key2, ChordNote, Chord, Key2Function),
+    chord_key(ChordNote, Chord, Key2Note, Key2, Key2Function),
     % the functions cannot be the same
     Key1Function \= Key2Function.
 RULE
