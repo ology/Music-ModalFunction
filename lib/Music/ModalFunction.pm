@@ -262,6 +262,8 @@ __END__
 
 =head1 SEE ALSO
 
+The F<t/01-methods.t> file in this distribution
+
 L<Moo>
 
 L<AI::Prolog>
@@ -273,5 +275,7 @@ L<Music::Note>
 L<Music::Scales>
 
 L<https://en.wikipedia.org/wiki/Prolog>
+
+L<https://en.wikipedia.org/wiki/Common_chord_(music)>
 
 =cut
