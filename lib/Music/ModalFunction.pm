@@ -163,29 +163,46 @@ has _database => (
 );
 sub _build__database {
     my ($self) = @_;
+
+    # consider every note
     my @chromatic = get_scale_notes('c', 'chromatic', 0, 'b');
     my $database = '';
+
+    # build a prolog fact for each base note
     for my $base (@chromatic) {
         my ($mode_base) = map { lc } midi_format($base);
+
+        # consider each mode's properties
         for my $mode (sort keys %{ $self->_modes }) {
-            my @pitches;
+            # get the 7 notes of the base note mode
             my @notes = get_scale_notes($base, $mode);
             warn "Basics: $base $mode [@notes]\n" if $self->verbose;
+
+            my @pitches; # notes suitable for the prolog database
+
+            # convert the notes to flatted, lower-case
             for my $note (@notes) {
                 my $n = Music::Note->new($note, 'isobase');
                 $n->en_eq('flat') if $note =~ /#/;
                 push @pitches, map { lc } midi_format($n->format('isobase'));
             }
-            my $i = 0;
+
+            my $i = 0; # increment for each of 7 diatonic modes
+
             for my $pitch (@pitches) {
+                # get the properties of the given mode
                 my $chord    = $self->_modes->{$mode}[$i]{chord};
                 my $function = $self->_modes->{$mode}[$i]{function};
                 my $roman    = $self->_modes->{$mode}[$i]{roman};
+
+                # append to the database of facts
                 $database .= "chord_key($pitch, $chord, $mode_base, $mode, $function, $roman).\n";
+
                 $i++;
             }
         }
     }
+    # append the prolog rules
     $database .= <<'RULES';
 % Can a chord in one key function in a second?
 pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2Note, Key2, Key2Function, Key2Roman) :-
@@ -203,6 +220,7 @@ roman_key(Mode, ModeRoman, Key, KeyRoman) :-
     ModeFunction \= KeyFunction.
 RULES
     warn "Database: $database\n" if $self->verbose;
+
     return $database;
 }
 
