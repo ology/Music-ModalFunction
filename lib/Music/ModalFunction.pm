@@ -329,12 +329,17 @@ sub roman_key {
 
 sub _querydb {
     my ($self, $query) = @_;
+
     warn "Query: $query\n" if $self->verbose;
+
     $self->_prolog->query($query);
+
     my @return;
+
     while (my $result = $self->_prolog->results) {
         push @return, $result;
     }
+
     return \@return;
 }
 
