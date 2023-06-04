@@ -325,7 +325,7 @@ __END__
 
 =head1 SEE ALSO
 
-The F<t/01-methods.t> file in this distribution
+The F<t/01-methods.t> and F<eg/*> files in this distribution
 
 L<Moo>
 
