@@ -49,6 +49,10 @@ Prolog facts and rules that bind notes, chords, modes, keys and
 diatonic functionality. In this database, the facts are all called
 C<chord_key> and the rules are C<pivot_chord_keys> and C<roman_key>.
 
+To bind a value to a fact or rule argument, declare it in the object
+constructor. Unbound arguments will return all the possible values
+that make the query true.
+
 =head1 ATTRIBUTES
 
 =head2 chord_note
