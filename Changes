@@ -2,6 +2,7 @@ Revision history for Music-ModalFunction
 
 {{$NEXT}}
     - Add the eg/mode-pivot example program.
+    - Improve documentation.
 
 0.0300 2023-06-03 14:07:39
     - Update comments and verbose output.
