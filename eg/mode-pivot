@@ -16,11 +16,12 @@ my $scale = 'ionian';
 for my $i (1 .. 4) {
     my $prog = Music::Chord::Progression->new(
         scale_note => $pitch,
-        scale_name => $scale eq 'ionian' ? 'ionian' : 'aeolian',
+        scale_name => $scale,
         chord_map  => $scale eq 'ionian' ? ['', 'm', 'm', '', '', 'm', 'dim'] : ['m','dim','','m','m','',''],
         max        => 4,
         flat       => 1,
         resolve    => 0,
+#        verbose    => 1,
     );
     my $chords = $prog->generate;
     warn "$pitch $scale => ", ddc($chords);
@@ -34,14 +35,13 @@ for my $i (1 .. 4) {
     ($pitch = $prog->phrase->[-1]) =~ s/^([A-G][b#]?).*?$/$1/;
     (my $modal_pitch = $pitch) =~ s/#/s/;
     $modal_pitch =~ s/b/f/;
-    $scale = $prog->phrase->[-1] =~ /m/ ? 'aeolian' : 'ionian';
-    my $chord = $scale eq 'ionian' ? 'maj' : 'min';
+    my $chord = $prog->phrase->[-1] =~ /m/ ? 'min' : 'maj';
 
     my $m = Music::ModalFunction->new(
         chord_note => lc($modal_pitch),
         chord      => $chord,
         mode_note  => $last_pitch,
-        mode       => $last_scale eq 'ionian' ? 'ionian' : 'aeolian',
+        mode       => $last_scale,
     );
     my $q = $m->pivot_chord_keys;
     last unless @$q;
