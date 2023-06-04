@@ -49,8 +49,7 @@ Prolog facts and rules that bind notes, chords, modes, keys and
 diatonic functionality.
 
 A database of facts and rules is constructed. The facts are all called
-C<chord_key/6> and the rules are C<pivot_chord_keys/10> and
-C<roman_key/4>.
+C<chord_key> and the rules are C<pivot_chord_keys> and C<roman_key>.
 
 =head1 ATTRIBUTES
 
