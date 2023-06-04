@@ -46,9 +46,7 @@ use namespace::clean;
 
 C<Music::ModalFunction> allows querying of a musical database of
 Prolog facts and rules that bind notes, chords, modes, keys and
-diatonic functionality.
-
-A database of facts and rules is constructed. The facts are all called
+diatonic functionality. In this database, the facts are all called
 C<chord_key> and the rules are C<pivot_chord_keys> and C<roman_key>.
 
 =head1 ATTRIBUTES
