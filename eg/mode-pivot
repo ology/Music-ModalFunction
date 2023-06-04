@@ -1,0 +1,57 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Data::Dumper::Compact qw(ddc);
+use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(MIDI-Util Music-Chord-Progression Music-ModalFunction);
+use MIDI::Util qw(setup_score midi_format);
+use Music::Chord::Progression ();
+use Music::ModalFunction ();
+
+my $score = setup_score();
+
+my $pitch = 'C';
+my $scale = 'ionian';
+
+for my $i (1 .. 4) {
+    my $prog = Music::Chord::Progression->new(
+        scale_note => $pitch,
+        scale_name => $scale eq 'ionian' ? 'ionian' : 'aeolian',
+        chord_map  => $scale eq 'ionian' ? ['', 'm', 'm', '', '', 'm', 'dim'] : ['m','dim','','m','m','',''],
+        max        => 4,
+        flat       => 1,
+        resolve    => 0,
+    );
+    my $chords = $prog->generate;
+    warn "$pitch $scale => ", ddc($chords);
+
+    for my $chord (@$chords) {
+        $score->n('wn', midi_format(@$chord));
+    }
+
+    my $last_pitch = $pitch;
+    my $last_scale = $scale;
+    ($pitch = $prog->phrase->[-1]) =~ s/^([A-G][b#]?).*?$/$1/;
+    (my $modal_pitch = $pitch) =~ s/#/s/;
+    $modal_pitch =~ s/b/f/;
+    $scale = $prog->phrase->[-1] =~ /m/ ? 'aeolian' : 'ionian';
+    my $chord = $scale eq 'ionian' ? 'maj' : 'min';
+
+    my $m = Music::ModalFunction->new(
+        chord_note => lc($modal_pitch),
+        chord      => $chord,
+        mode_note  => $last_pitch,
+        mode       => $last_scale eq 'ionian' ? 'ionian' : 'aeolian',
+    );
+    my $q = $m->pivot_chord_keys;
+    last unless @$q;
+    my $result = $q->[ int rand @$q ];
+    $pitch = substr $result->[7], 0, 1;
+    (my $accidental = $result->[7]) =~ s/^[a-g]([fs]?)/$1/;
+    $accidental = '#' if $accidental eq 's';
+    $accidental = 'b' if $accidental eq 'f';
+    $pitch = uc($pitch) . $accidental;
+    $scale = $result->[8];
+}
+
+$score->write_score("$0.mid");
