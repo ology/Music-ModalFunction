@@ -3,7 +3,7 @@
 # Generate and play a chord progression that changes keys every four
 # measures, based on the final phrase pivot chord.
 #
-# Writeup: https://ology.github.io/2023/06/05/querying-a-music-theory-database/
+# Write-up: https://ology.github.io/2023/06/05/querying-a-music-theory-database/
 
 use strict;
 use warnings;
