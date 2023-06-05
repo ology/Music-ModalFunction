@@ -1,6 +1,8 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+
+0.0308 2023-06-05 12:22:53
     - Improve eg/mode-pivot a bit more.
     - Improve documentation.
 
