@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+
+# Generate and play a chord progression that changes keys every four
+# measures, based on the final phrase pivot chord.
+
 use strict;
 use warnings;
 
