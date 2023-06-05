@@ -53,6 +53,10 @@ To bind a value to a fact or rule argument, declare it in the object
 constructor. Unbound arguments will return all the possible values
 that make the query true.
 
+The essential question is, "Can a chord in one key function in a
+second?" Any B<any> parts of this open-ended question may be unbound,
+thereby resulting in all possible truths.
+
 =head1 ATTRIBUTES
 
 =head2 chord_note
