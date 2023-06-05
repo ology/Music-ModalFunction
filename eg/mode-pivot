@@ -12,12 +12,13 @@ use MIDI::Util qw(setup_score midi_format);
 use Music::Chord::Progression ();
 use Music::ModalFunction ();
 
-my $pitch = shift || 'C';
-my $scale = shift || 'ionian';
+my $pitch   = shift || 'C';
+my $scale   = shift || 'ionian';
+my $phrases = shift || 4;
 
 my $score = setup_score();
 
-for my $i (1 .. 4) {
+for my $i (1 .. $phrases) {
     my $prog = Music::Chord::Progression->new(
         scale_note => $pitch,
         scale_name => $scale,
