@@ -387,6 +387,7 @@ L<https://en.wikipedia.org/wiki/Prolog>
 
 L<https://en.wikipedia.org/wiki/Common_chord_(music)>
 
-L<https://ology.github.io/2023/06/05/querying-a-music-theory-database/> the writeup about using this module
+L<https://ology.github.io/2023/06/05/querying-a-music-theory-database/>
+is the writeup about using this module
 
 =cut
