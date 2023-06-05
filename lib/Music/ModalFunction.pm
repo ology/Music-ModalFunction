@@ -252,7 +252,7 @@ Arguments:
 
   chord_key(ChordNote, Chord, KeyNote, Key, KeyFunction, KeyRoman)
 
-Here, B<ChordNote> and B<Chord> together are the named chord defined within the context of the B<ModeNote> and B<Mode>. The chord's function in the mode is the B<ModeFunction> and basically indicates the relative scale position. The chord is either C<maj>, C<min>, or C<dim>, and the B<ModeRoman> serves as an indicator of both the chord quality and the position in the scale.
+Here, B<ChordNote> and B<Chord> together are the named chord defined within the context of the B<KeyNote> and B<Key>. The chord's function in the key is the B<KeyFunction> and basically indicates the relative scale position. The chord can be C<maj>, C<min>, or C<dim>, and the B<KeyRoman> serves as an indicator of both the chord quality and the position in the scale.
 
 If defined, argument values will be bound to a variable. Otherwise an
 unbound variable is used.
@@ -282,7 +282,7 @@ Arguments:
 
   pivot_chord_keys(ChordNote, Chord, ModeNote, Mode, ModeFunction, ModeRoman, KeyNote, Key, KeyFunction, KeyRoman)
 
-Here, B<ChordNote> and B<Chord> together are the named chord defined within the context of the B<ModeNote> and B<Mode>. The chord's function in the mode is the B<ModeFunction> and basically indicates the relative scale position. The chord is either C<maj>, C<min>, or C<dim>, and the B<ModeRoman> serves as an indicator of both the chord quality and the position in the scale. The B<KeyNote> and B<Key> are the final "destination" of the query transformation. As with the ModeRoman, B<KeyRoman> is the resulting chord quality and scale position.
+Here, B<ChordNote> and B<Chord> together are the named chord defined within the context of the B<ModeNote> and B<Mode>. The chord's function in the mode is the B<ModeFunction> and basically indicates the relative scale position. The chord can be C<maj>, C<min>, or C<dim>, and the B<ModeRoman> serves as an indicator of both the chord quality and the position in the scale. The B<KeyNote> and B<Key> are the final "destination" of the query transformation. As with the ModeRoman, B<KeyRoman> is the resulting chord quality and scale position.
 
 If defined, argument values will be bound to a variable. Otherwise an
 unbound variable is used.
