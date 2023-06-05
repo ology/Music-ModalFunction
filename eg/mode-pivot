@@ -27,7 +27,6 @@ for my $i (1 .. $phrases) {
         verbose    => 1,
     );
     my $chords = $prog->generate;
-#    warn "$pitch $scale => ", ddc($chords);
 
     for my $chord (@$chords) {
         $score->n('wn', midi_format(@$chord));
