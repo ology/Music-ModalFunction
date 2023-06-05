@@ -21,7 +21,7 @@ for my $i (1 .. 4) {
         max        => 4,
         flat       => 1,
         resolve    => 0,
-#        verbose    => 1,
+        verbose    => 1,
     );
     my $chords = $prog->generate;
     warn "$pitch $scale => ", ddc($chords);
