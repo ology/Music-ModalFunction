@@ -31,7 +31,8 @@ for my $i (1 .. 4) {
 
     my $last_pitch = $pitch;
     my $last_scale = $scale;
-    my $chord = $prog->phrase->[-1] =~ /m/ ? 'min' : 'maj';
+    my $chord = $prog->phrase->[-1] =~ /dim/ ? 'dim'
+              : $prog->phrase->[-1] =~ /m/   ? 'min' : 'maj';
     (my $modal_pitch = $prog->phrase->[-1]) =~ s/^([A-G][b#]?).*?$/$1/;
     $modal_pitch =~ s/#/s/;
     $modal_pitch =~ s/b/f/;
