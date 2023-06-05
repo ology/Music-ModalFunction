@@ -17,7 +17,6 @@ for my $i (1 .. 4) {
     my $prog = Music::Chord::Progression->new(
         scale_note => $pitch,
         scale_name => $scale,
-        chord_map  => $scale eq 'ionian' ? ['', 'm', 'm', '', '', 'm', 'dim'] : ['m','dim','','m','m','',''],
         max        => 4,
         flat       => 1,
         resolve    => 0,
