@@ -45,6 +45,7 @@ for my $i (1 .. $phrases) {
     $modal_pitch =~ s/#/s/;
     $modal_pitch =~ s/b/f/;
 
+    # make a modal query object with the current chord and mode
     my $m = Music::ModalFunction->new(
         chord_note => lc($modal_pitch),
         chord      => $chord,
