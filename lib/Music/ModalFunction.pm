@@ -61,25 +61,47 @@ resulting in all possible truths.
 
 =head2 chord_note
 
+C<a-g>
+
 =head2 chord
+
+  C<maj>, C<min>, or C<dim>
 
 =head2 mode_note
 
+C<a-g>
+
 =head2 mode
+
+C<ionian>, C<dorian>, C<phrygian>, C<lydian>, C<mixolydian>, C<aeolian>, or C<locrian>
 
 =head2 mode_function
 
+C<tonic>, C<supertonic>, C<mediant>, C<subdominant>, C<dominant>, C<submediant>, C<leading_tone>, or C<subtonic>
+
 =head2 mode_roman
+
+C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
 
 =head2 key_note
 
+C<a-g>
+
 =head2 key
+
+C<ionian>, C<dorian>, C<phrygian>, C<lydian>, C<mixolydian>, C<aeolian>, or C<locrian>
 
 =head2 key_function
 
+C<tonic>, C<supertonic>, C<mediant>, C<subdominant>, C<dominant>, C<submediant>, C<leading_tone>, or C<subtonic>
+
 =head2 key_roman
 
+C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
+
 =head2 verbose
+
+Default: C<0>
 
 =cut
 
