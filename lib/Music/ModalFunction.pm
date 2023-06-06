@@ -61,7 +61,7 @@ resulting in all possible truths.
 
 =head2 chord_note
 
-C<a-g>
+C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
 
 =head2 chord
 
@@ -69,7 +69,7 @@ C<a-g>
 
 =head2 mode_note
 
-C<a-g>
+C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
 
 =head2 mode
 
@@ -85,7 +85,7 @@ C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
 
 =head2 key_note
 
-C<a-g>
+C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
 
 =head2 key
 
