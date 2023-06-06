@@ -248,7 +248,7 @@ Create a new C<Music::ModalFunction> object.
 
 =head2 chord_key
 
-  $q = $m->chord_key;
+  $results = $m->chord_key;
 
 Ask the database a question about what chords are in what keys.
 
@@ -283,7 +283,7 @@ sub chord_key {
 
 =head2 pivot_chord_keys
 
-  $q = $m->pivot_chord_keys;
+  $results = $m->pivot_chord_keys;
 
 Ask the database a question about what chords share common keys.
 
@@ -325,7 +325,7 @@ sub pivot_chord_keys {
 
 =head2 roman_key
 
-  $q = $m->roman_key;
+  $results = $m->roman_key;
 
 Ask the database a question about what Roman numeral functional chords
 share common keys.
