@@ -61,6 +61,7 @@ for my $i (1 .. $phrases) {
     $pitch = substr $result->[7], 0, 1;
     # get the result accidental
     (my $accidental = $result->[7]) =~ s/^[a-g]([fs]?)/$1/;
+    # convert back to #/b format
     $accidental = '#' if $accidental eq 's';
     $accidental = 'b' if $accidental eq 'f';
     # redefine the pitch with the accidental appended
