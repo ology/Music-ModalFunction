@@ -276,8 +276,7 @@ sub chord_key {
         defined $self->key_note     ? $self->key_note     : 'KeyNote',
         defined $self->key          ? $self->key          : 'Key',
         defined $self->key_function ? $self->key_function : 'KeyFunction',
-        defined $self->key_roman    ? $self->key_roman    : 'KeyRoman',
-    ;
+        defined $self->key_roman    ? $self->key_roman    : 'KeyRoman';
     return $self->_querydb($query);
 }
 
@@ -318,8 +317,7 @@ sub pivot_chord_keys {
         defined $self->key_note      ? $self->key_note      : 'KeyNote',
         defined $self->key           ? $self->key           : 'Key',
         defined $self->key_function  ? $self->key_function  : 'KeyFunction',
-        defined $self->key_roman     ? $self->key_roman     : 'KeyRoman',
-    ;
+        defined $self->key_roman     ? $self->key_roman     : 'KeyRoman';
     return $self->_querydb($query);
 }
 
@@ -345,8 +343,7 @@ sub roman_key {
         defined $self->mode       ? $self->mode       : 'Mode',
         defined $self->mode_roman ? $self->mode_roman : 'ModeRoman',
         defined $self->key        ? $self->key        : 'Key',
-        defined $self->key_roman  ? $self->key_roman  : 'KeyRoman',
-    ;
+        defined $self->key_roman  ? $self->key_roman  : 'KeyRoman';
     return $self->_querydb($query);
 }
 
