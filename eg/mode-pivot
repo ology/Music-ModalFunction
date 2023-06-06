@@ -38,7 +38,7 @@ for my $i (1 .. $phrases) {
     # remember the last pitch and scale
     my $last_pitch = $pitch;
     my $last_scale = $scale;
-    # get the chord and pitch of the final chord of the phrase
+    # get the chord quality and pitch of the final chord of the phrase
     my $chord = $prog->phrase->[-1] =~ /dim/ ? 'dim'
               : $prog->phrase->[-1] =~ /m/   ? 'min' : 'maj';
     (my $modal_pitch = $prog->phrase->[-1]) =~ s/^([A-G][b#]?).*?$/$1/;
