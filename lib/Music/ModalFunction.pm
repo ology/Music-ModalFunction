@@ -276,9 +276,9 @@ Create a new C<Music::ModalFunction> object.
 
 Ask the database a question about what chords are in what keys.
 
-Positional arguments:
+Constuctor arguments:
 
-  ChordNote, Chord, KeyNote, Key, KeyFunction, KeyRoman
+  chord_note, chord, key_note, key, key_function, key_roman
 
 Here, B<ChordNote> and B<Chord> together are the named chord defined
 within the context of the B<KeyNote> and B<Key>. The chord's function
@@ -310,9 +310,9 @@ sub chord_key {
 
 Ask the database a question about what chords share common keys.
 
-Positional arguments:
+Constuctor arguments:
 
-  ChordNote, Chord, ModeNote, Mode, ModeFunction, ModeRoman, KeyNote, Key, KeyFunction, KeyRoman
+  chord_note, chord, mode_note, mode, mode_function, mode_roman, key_note, key, key_function, key_roman
 
 Here, B<ChordNote> and B<Chord> together are the named chord defined
 within the context of the B<ModeNote> and B<Mode>. The chord's
@@ -352,9 +352,9 @@ sub pivot_chord_keys {
 Ask the database a question about what Roman numeral functional chords
 share common keys.
 
-Positional arguments:
+Constuctor arguments:
 
-  Mode, ModeRoman, Key, KeyRoman
+  mode, mode_roman, key, key_roman
 
 If defined, argument values will be bound to a variable. Otherwise an
 unbound variable is used.
