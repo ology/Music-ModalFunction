@@ -276,7 +276,7 @@ Create a new C<Music::ModalFunction> object.
 
 Ask the database a question about what chords are in what keys.
 
-Constuctor arguments:
+Constructor arguments:
 
   chord_note, chord, key_note, key, key_function, key_roman
 
@@ -310,7 +310,7 @@ sub chord_key {
 
 Ask the database a question about what chords share common keys.
 
-Constuctor arguments:
+Constructor arguments:
 
   chord_note, chord, mode_note, mode, mode_function, mode_roman, key_note, key, key_function, key_roman
 
@@ -352,7 +352,7 @@ sub pivot_chord_keys {
 Ask the database a question about what Roman numeral functional chords
 share common keys.
 
-Constuctor arguments:
+Constructor arguments:
 
   mode, mode_roman, key, key_roman
 
