@@ -280,12 +280,11 @@ Constructor arguments:
 
   chord_note, chord, key_note, key, key_function, key_roman
 
-Here, B<ChordNote> and B<Chord> together are the named chord defined
-within the context of the B<KeyNote> and B<Key>. The chord's function
-in the key is the B<KeyFunction> and basically indicates the relative
-scale position. The chord can be C<maj>, C<min>, or C<dim>, and the
-B<KeyRoman> serves as an indicator of both the chord quality and the
-position in the scale.
+Here, B<chord_note> and B<chord> together are the named chord defined
+within the context of the B<key_note> and B<key>. The chord's function
+in the key is the B<key_function> and basically indicates the relative
+scale position. The B<key_roman> argument serves as an indicator of
+both the chord quality and the position in the scale.
 
 If defined, argument values will be bound to a variable. Otherwise an
 unbound variable is used.
@@ -314,15 +313,15 @@ Constructor arguments:
 
   chord_note, chord, mode_note, mode, mode_function, mode_roman, key_note, key, key_function, key_roman
 
-Here, B<ChordNote> and B<Chord> together are the named chord defined
-within the context of the B<ModeNote> and B<Mode>. The chord's
-function in the mode is the B<ModeFunction> and basically indicates
-the relative scale position. The chord can be C<maj>, C<min>, or
-C<dim>, and the B<ModeRoman> serves as an indicator of both the chord
-quality and the position in the scale. The B<KeyNote> and B<Key> are
-the final "destination" of the query transformation (often a pivot).
-As with the ModeRoman, B<KeyRoman> is the resulting chord quality and
-scale position.
+Here, B<chord_note> and B<chord> together are the named chord defined
+within the context of the B<mode_note> and B<mode>. The chord's
+function in the mode is the B<mode_function> and basically indicates
+the relative scale position. The B<mode_roman> argument serves as an
+indicator of both the chord quality and the position in the scale. The
+B<key_note> and B<key> are the final "destination" of the query
+transformation (often a pivot). The function of the chord in the
+"destination" is B<key_function>. As with mode_roman, B<key_roman> is
+the resulting chord quality and scale position.
 
 If defined, argument values will be bound to a variable. Otherwise an
 unbound variable is used.
