@@ -63,6 +63,8 @@ resulting in all possible truths.
 
 C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
 
+* Sharps are not used - only flats.
+
 =head2 chord
 
   C<maj>, C<min>, or C<dim>
