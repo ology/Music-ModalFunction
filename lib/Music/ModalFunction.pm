@@ -23,7 +23,7 @@ use namespace::clean;
     chord        => 'maj',
     key_function => 'dominant',
   );
-  my $q = $m->chord_key;
+  my $results = $m->chord_key;
   # [['chord_key','d','maj','g','ionian','dominant','r_V'],
   #  ['chord_key','d','maj','g','lydian','dominant','r_V']]
 
@@ -34,7 +34,7 @@ use namespace::clean;
     mode_note    => 'c',
     key_function => 'subdominant',
   );
-  $q = $m->pivot_chord_keys;
+  $results = $m->pivot_chord_keys;
   # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant','r_IV'],
   #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant','r_IV'],
   #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant','r_IV'],
