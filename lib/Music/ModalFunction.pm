@@ -67,7 +67,7 @@ C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
 
 =head2 chord
 
-  C<maj>, C<min>, or C<dim>
+C<maj>, C<min>, or C<dim>
 
 =head2 mode_note
 
