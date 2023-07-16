@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Attempt to fix the mystery smoke test failure...
 
 0.0312 2023-06-05 23:24:55
     - Improve documentation again!
