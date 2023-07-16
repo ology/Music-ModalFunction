@@ -1,6 +1,9 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Pin the needed MIDI::Util version.
+
+0.0314 2023-07-16 07:27:02
     - Fix package name typo!
 
 0.0313 2023-07-16 07:21:58
