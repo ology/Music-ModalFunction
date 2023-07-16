@@ -200,7 +200,7 @@ sub _build__database {
 
     # build a prolog fact for each base note
     for my $base (@chromatic) {
-        my ($mode_base) = map { lc } Music::ModalFunction::midi_format($base);
+        my ($mode_base) = map { lc } MIDI::Util::midi_format($base);
 
         # consider each mode's properties
         for my $mode (sort keys %{ $self->_modes }) {
@@ -214,7 +214,7 @@ sub _build__database {
             for my $note (@notes) {
                 my $n = Music::Note->new($note, 'isobase');
                 $n->en_eq('flat') if $note =~ /#/;
-                push @pitches, map { lc } Music::ModalFunction::midi_format($n->format('isobase'));
+                push @pitches, map { lc } MIDI::Util::midi_format($n->format('isobase'));
             }
 
             my $i = 0; # increment for each of 7 diatonic modes
