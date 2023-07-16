@@ -1,6 +1,9 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Fix package name typo!
+
+0.0313 2023-07-16 07:21:58
     - Attempt to fix the mystery smoke test failure...
 
 0.0312 2023-06-05 23:24:55
