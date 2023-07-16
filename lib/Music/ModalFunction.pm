@@ -2,7 +2,7 @@ package Music::ModalFunction;
 
 # ABSTRACT: Inspect musical modal functions
 
-our $VERSION = '0.0313';
+our $VERSION = '0.0314';
 
 use Moo;
 use strictures 2;
