@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Improve documentation.
 
 0.0315 2023-07-16 07:33:22
     - Pin the needed MIDI::Util version.
