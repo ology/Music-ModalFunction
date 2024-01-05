@@ -4,11 +4,11 @@ package Music::ModalFunction;
 
 our $VERSION = '0.0315';
 
-use Moo;
 use strictures 2;
 use AI::Prolog ();
 use Carp qw(croak);
 use MIDI::Util qw(midi_format);
+use Moo;
 use Music::Note ();
 use Music::Scales qw(get_scale_notes);
 use namespace::clean;
@@ -26,6 +26,7 @@ use namespace::clean;
   my $results = $m->chord_key;
   # [['chord_key','d','maj','g','ionian','dominant','r_V'],
   #  ['chord_key','d','maj','g','lydian','dominant','r_V']]
+  # So the answers are G Ionian and G Lydian.
 
   # In what mode(s) can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
