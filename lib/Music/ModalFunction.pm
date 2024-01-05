@@ -32,16 +32,17 @@ use namespace::clean;
   $m = Music::ModalFunction->new(
     chord_note   => 'g',
     chord        => 'maj',
-    mode_note    => 'c',
     key_function => 'subdominant',
   );
   $results = $m->pivot_chord_keys;
-  # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','dorian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','ionian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','mixolydian','subdominant','r_IV']]
+  # [[ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'r_V', 'd', 'dorian', 'subdominant', 'r_IV' ],
+  #  [ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'r_V', 'd', 'ionian', 'subdominant', 'r_IV' ],
+  #  [ 'pivot_chord_keys', 'g', 'maj', 'c', 'ionian', 'dominant', 'r_V', 'd', 'mixolydian', 'subdominant', 'r_IV' ],
+  #  ...
+  #  [ 'pivot_chord_keys', 'g', 'maj', 'b', 'phrygian', 'submediant', 'r_VI', 'd', 'dorian', 'subdominant', 'r_IV' ],
+  #  [ 'pivot_chord_keys', 'g', 'maj', 'b', 'phrygian', 'submediant', 'r_VI', 'd', 'ionian', 'subdominant', 'r_IV' ],
+  #  [ 'pivot_chord_keys', 'g', 'maj', 'b', 'phrygian', 'submediant', 'r_VI', 'd', 'mixolydian', 'subdominant', 'r_IV' ]]
+  # Inspecting the result lists, we see that the answers are D Dorian, D Ionian, and D Mixolydian.
 
 =head1 DESCRIPTION
 
@@ -49,6 +50,10 @@ C<Music::ModalFunction> allows querying of a musical database of
 Prolog facts and rules that bind notes, chords, modes, keys and
 diatonic functionality. In this database, the facts are all called
 C<chord_key> and the rules are C<pivot_chord_keys> and C<roman_key>.
+
+Wikipedia puts it this way, "A common chord, in the theory of harmony,
+is a chord that is diatonic to more than one key or, in other words,
+is common to (shared by) two keys."
 
 To bind a value to a fact or rule argument, declare it in the object
 constructor. Unbound arguments will return all the possible values
@@ -407,6 +412,8 @@ L<Music::Scales>
 L<https://en.wikipedia.org/wiki/Prolog>
 
 L<https://en.wikipedia.org/wiki/Common_chord_(music)>
+
+L<https://en.wikipedia.org/wiki/Closely_related_key>
 
 L<https://ology.github.io/2023/06/05/querying-a-music-theory-database/>
 is the write-up about using this module
