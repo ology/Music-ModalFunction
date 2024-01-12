@@ -36,9 +36,9 @@ use namespace::clean;
     hash_results => 1,
   );
   $results = $m->pivot_chord_keys;
-  # [{ chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'dorian', key_function => 'subdominant', key_roman => 'r_IV' },
-  #  { chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'ionian', key_function => 'subdominant', key_roman => 'r_IV' },
-  #  { chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'mixolydian', key_function => 'subdominant', key_roman => 'r_IV' },
+  # [{ method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'dorian', key_function => 'subdominant', key_roman => 'r_IV' },
+  #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'ionian', key_function => 'subdominant', key_roman => 'r_IV' },
+  #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'mixolydian', key_function => 'subdominant', key_roman => 'r_IV' },
   #  ... ]
   # Inspecting all the results, we see that the answers are D Dorian, D Ionian, and D Mixolydian.
 
