@@ -2,7 +2,7 @@ package Music::ModalFunction;
 
 # ABSTRACT: Inspect musical modal functions
 
-our $VERSION = '0.0400';
+our $VERSION = '0.0401';
 
 use strictures 2;
 use AI::Prolog ();
