@@ -105,6 +105,12 @@ C<tonic>, C<supertonic>, C<mediant>, C<subdominant>, C<dominant>, C<submediant>,
 
 C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
 
+=head2 hash_results
+
+Return the query results as a list of named hash references.
+
+Default: C<0>
+
 =head2 verbose
 
 Default: C<0>
