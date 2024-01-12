@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Use named results in the eg/mode-pivot program.
 
 0.0403 2024-01-12 01:30:38
     - Fix documentation again...
