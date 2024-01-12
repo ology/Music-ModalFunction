@@ -36,9 +36,9 @@ use namespace::clean;
     hash_results => 1,
   );
   $results = $m->pivot_chord_keys;
-  # [{ method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'dorian', key_function => 'subdominant', key_roman => 'r_IV' },
-  #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'ionian', key_function => 'subdominant', key_roman => 'r_IV' },
-  #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'mixolydian', key_function => 'subdominant', key_roman => 'r_IV' },
+  # [{ chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'dorian', key_function => 'subdominant', key_roman => 'r_IV' },
+  #  { chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'ionian', key_function => 'subdominant', key_roman => 'r_IV' },
+  #  { chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'mixolydian', key_function => 'subdominant', key_roman => 'r_IV' },
   #  ... ]
   # Inspecting all the result lists, we see that the answers are D Dorian, D Ionian, and D Mixolydian.
 
@@ -119,6 +119,27 @@ has verbose => (
     is      => 'ro',
     isa     => sub { croak "$_[0] is not a boolean" unless $_[0] =~ /^[01]$/ },
     default => sub { 0 },
+);
+
+has hash_results => (
+    is      => 'ro',
+    isa     => sub { croak "$_[0] is not a boolean" unless $_[0] =~ /^[01]$/ },
+    default => sub { 0 },
+);
+
+has _chord_key => (
+    is      => 'ro',
+    default => sub { [qw(method chord_note chord key_note key key_function key_roman)] },
+);
+
+has _pivot_chord_keys => (
+    is      => 'ro',
+    default => sub { [qw(method chord_note chord mode_note mode mode_function mode_roman key_note key key_function key_roman)] },
+);
+
+has _roman_key => (
+    is      => 'ro',
+    default => sub { [qw(method mode mode_roman key key_roman)] },
 );
 
 has _modes => (
@@ -304,7 +325,7 @@ sub chord_key {
         defined $self->key          ? $self->key          : 'Key',
         defined $self->key_function ? $self->key_function : 'KeyFunction',
         defined $self->key_roman    ? $self->key_roman    : 'KeyRoman';
-    return $self->_querydb($query);
+    return $self->_querydb('chord_key', $query);
 }
 
 =head2 pivot_chord_keys
@@ -345,7 +366,7 @@ sub pivot_chord_keys {
         defined $self->key           ? $self->key           : 'Key',
         defined $self->key_function  ? $self->key_function  : 'KeyFunction',
         defined $self->key_roman     ? $self->key_roman     : 'KeyRoman';
-    return $self->_querydb($query);
+    return $self->_querydb('pivot_chord_keys', $query);
 }
 
 =head2 roman_key
@@ -371,20 +392,29 @@ sub roman_key {
         defined $self->mode_roman ? $self->mode_roman : 'ModeRoman',
         defined $self->key        ? $self->key        : 'Key',
         defined $self->key_roman  ? $self->key_roman  : 'KeyRoman';
-    return $self->_querydb($query);
+    return $self->_querydb('roman_key', $query);
 }
 
 sub _querydb {
-    my ($self, $query) = @_;
+    my ($self, $method, $query) = @_;
 
-    warn "Query: $query\n" if $self->verbose;
+    warn "$method query: $query\n" if $self->verbose;
 
     $self->_prolog->query($query);
+
+    my $attr = '_' . $method;
 
     my @return;
 
     while (my $result = $self->_prolog->results) {
-        push @return, $result;
+        if ($self->hash_results) {
+            my %result;
+            @result{ @{ $self->$attr } } = @$result;
+            push @return, \%result;
+        }
+        else {
+            push @return, $result;
+        }
     }
 
     return \@return;
