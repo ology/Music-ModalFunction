@@ -17,7 +17,7 @@ use namespace::clean;
 
   use Music::ModalFunction ();
 
-  # What key(s) have a Dmaj dominant chord?
+  # What modes have a Dmaj dominant chord?
   my $m = Music::ModalFunction->new(
     chord_note   => 'd',
     chord        => 'maj',
@@ -28,7 +28,7 @@ use namespace::clean;
   #  ['chord_key','d','maj','g','lydian','dominant','r_V']]
   # So the answers are G Ionian and G Lydian.
 
-  # In what key(s) can a Gmaj chord function as a subdominant pivot chord?
+  # In what keys can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
     chord_note   => 'g',
     chord        => 'maj',
