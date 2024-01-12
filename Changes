@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Return hash results if requested.
 
 0.0316 2024-01-05 11:45:32
     - Improve documentation.
