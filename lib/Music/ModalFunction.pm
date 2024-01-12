@@ -24,8 +24,8 @@ use namespace::clean;
     key_function => 'dominant',
   );
   my $results = $m->chord_key;
-  # [['chord_key','d','maj','g','ionian','dominant','r_V'],
-  #  ['chord_key','d','maj','g','lydian','dominant','r_V']]
+  # [[ 'chord_key', 'd', 'maj', 'g', 'ionian', 'dominant', 'r_V' ],
+  #  [ 'chord_key', 'd', 'maj', 'g', 'lydian', 'dominant', 'r_V' ]]
   # So the answers are G Ionian and G Lydian.
 
   # In what keys can a Gmaj chord function as a subdominant pivot chord?
