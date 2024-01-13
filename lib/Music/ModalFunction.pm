@@ -301,6 +301,9 @@ sub _build__prolog {
 
 Create a new C<Music::ModalFunction> object.
 
+If defined, argument values will be bound to a variable. Otherwise an
+unbound variable is used for the queries detailed below.
+
 =head2 chord_key
 
   $results = $m->chord_key;
@@ -316,9 +319,6 @@ within the context of the B<key_note> and B<key>. The chord's function
 in the key is the B<key_function> and basically indicates the relative
 scale position. The B<key_roman> argument serves as an indicator of
 both the chord quality and the position in the scale.
-
-If defined, argument values will be bound to a variable. Otherwise an
-unbound variable is used.
 
 =cut
 
@@ -354,9 +354,6 @@ transformation (often a pivot). The function of the chord in the
 "destination" is B<key_function>. As with mode_roman, B<key_roman> is
 the resulting chord quality and scale position.
 
-If defined, argument values will be bound to a variable. Otherwise an
-unbound variable is used.
-
 =cut
 
 sub pivot_chord_keys {
@@ -385,9 +382,6 @@ share common keys.
 Constructor arguments:
 
   mode, mode_roman, key, key_roman
-
-If defined, argument values will be bound to a variable. Otherwise an
-unbound variable is used.
 
 =cut
 
