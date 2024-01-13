@@ -107,6 +107,17 @@ subtest pivot_chord_keys => sub {
     $got = $obj->pivot_chord_keys;
     $expect = 45;
     is scalar(@$got), $expect, 'pivot_chord_keys';
+
+    $obj = Music::ModalFunction->new(
+        mode_note    => 'c',
+        mode         => 'ionian',
+        key_note     => 'gb',
+        key          => 'ionian',
+        hash_results => 1,
+    );
+    $got = $obj->pivot_chord_keys;
+    $expect = 0;
+    is scalar(@$got), $expect, 'pivot_chord_keys';
 };
 
 subtest roman_key => sub {
