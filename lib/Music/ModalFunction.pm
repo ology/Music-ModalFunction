@@ -48,7 +48,6 @@ use namespace::clean;
     mode         => 'ionian',
     key_note     => 'gb',
     key          => 'ionian',
-    hash_results => 1,
   );
   $results = $m->pivot_chord_keys; # There are no chords in common!
 
