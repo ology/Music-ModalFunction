@@ -42,6 +42,15 @@ use namespace::clean;
   #  ... ]
   # Inspecting all the results, we see that the answers are D Dorian, D Ionian, and D Mixolydian.
 
+  # What chords do C major and A minor have in common?
+  $obj = Music::ModalFunction->new(
+    mode_note    => 'c',
+    mode         => 'ionian',
+    key_note     => 'a',
+    key          => 'aeolian',
+  );
+  $results = $obj->pivot_chord_keys; # 7 common chords
+
   # What chords do C major and F♯ (G♭) major have in common?
   $m = Music::ModalFunction->new(
     mode_note    => 'c',
