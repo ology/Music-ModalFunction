@@ -17,18 +17,36 @@ use namespace::clean;
 
   use Music::ModalFunction ();
 
-  # What can have a Dmaj dominant chord?
+  # What chords do C major and A minor have in common?
   my $m = Music::ModalFunction->new(
+    mode_note    => 'c',
+    mode         => 'ionian',
+    key_note     => 'a',
+    key          => 'aeolian',
+  );
+  my $results = $m->pivot_chord_keys; # 7 common chords
+
+  # What chords do C major and F♯ (G♭) major have in common?
+  $m = Music::ModalFunction->new(
+    mode_note    => 'c',
+    mode         => 'ionian',
+    key_note     => 'gb',
+    key          => 'ionian',
+  );
+  $results = $m->pivot_chord_keys; # No chords in common!
+
+  # What modes can have a Dmaj dominant chord?
+  $m = Music::ModalFunction->new(
     chord_note   => 'd',
     chord        => 'maj',
     key_function => 'dominant',
   );
-  my $results = $m->chord_key;
+  $results = $m->chord_key;
   # [[ 'chord_key', 'd', 'maj', 'g', 'ionian', 'dominant', 'r_V' ],
   #  [ 'chord_key', 'd', 'maj', 'g', 'lydian', 'dominant', 'r_V' ]]
   # So the answers are G Ionian and G Lydian.
 
-  # Where can a Gmaj chord function as a subdominant pivot chord?
+  # In what modes can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
     chord_note   => 'g',
     chord        => 'maj',
@@ -41,24 +59,6 @@ use namespace::clean;
   #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'mixolydian', key_function => 'subdominant', key_roman => 'r_IV' },
   #  ... ]
   # Inspecting all the results, we see that the answers are D Dorian, D Ionian, and D Mixolydian.
-
-  # What chords do C major and A minor have in common?
-  $m = Music::ModalFunction->new(
-    mode_note    => 'c',
-    mode         => 'ionian',
-    key_note     => 'a',
-    key          => 'aeolian',
-  );
-  $results = $m->pivot_chord_keys; # 7 common chords
-
-  # What chords do C major and F♯ (G♭) major have in common?
-  $m = Music::ModalFunction->new(
-    mode_note    => 'c',
-    mode         => 'ionian',
-    key_note     => 'gb',
-    key          => 'ionian',
-  );
-  $results = $m->pivot_chord_keys; # There are no chords in common!
 
 =head1 DESCRIPTION
 
