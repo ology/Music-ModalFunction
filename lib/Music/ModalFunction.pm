@@ -57,6 +57,10 @@ The essential question is, "Can a chord in one key function in a
 second?" Any parts of this open-ended question may be unbound, thereby
 resulting in all possible truths.
 
+nb: The names "mode" and "key" below, are both used to mean "mode 1"
+and "mode 2" respectively. But for some reason I chose to use "key"
+even though that is confusing. Argh! :|
+
 =head1 ATTRIBUTES
 
 =head2 chord_note
