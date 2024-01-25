@@ -2,13 +2,13 @@ package Music::ModalFunction;
 
 # ABSTRACT: Inspect musical modal functions
 
-our $VERSION = '0.0315';
+our $VERSION = '0.0406';
 
-use Moo;
 use strictures 2;
 use AI::Prolog ();
 use Carp qw(croak);
 use MIDI::Util qw(midi_format);
+use Moo;
 use Music::Note ();
 use Music::Scales qw(get_scale_notes);
 use namespace::clean;
@@ -17,30 +17,48 @@ use namespace::clean;
 
   use Music::ModalFunction ();
 
-  # What mode(s) have a Dmaj dominant chord?
+  # What can have a Dmaj dominant chord?
   my $m = Music::ModalFunction->new(
     chord_note   => 'd',
     chord        => 'maj',
     key_function => 'dominant',
   );
   my $results = $m->chord_key;
-  # [['chord_key','d','maj','g','ionian','dominant','r_V'],
-  #  ['chord_key','d','maj','g','lydian','dominant','r_V']]
+  # [[ 'chord_key', 'd', 'maj', 'g', 'ionian', 'dominant', 'r_V' ],
+  #  [ 'chord_key', 'd', 'maj', 'g', 'lydian', 'dominant', 'r_V' ]]
+  # So the answers are G Ionian and G Lydian.
 
-  # In what mode(s) can a Gmaj chord function as a subdominant pivot chord?
+  # Where can a Gmaj chord function as a subdominant pivot chord?
   $m = Music::ModalFunction->new(
     chord_note   => 'g',
     chord        => 'maj',
-    mode_note    => 'c',
     key_function => 'subdominant',
+    hash_results => 1,
   );
   $results = $m->pivot_chord_keys;
-  # [['pivot_chord_keys','g','maj','c','ionian','dominant','d','dorian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','ionian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','ionian','dominant','d','mixolydian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','dorian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','ionian','subdominant','r_IV'],
-  #  ['pivot_chord_keys','g','maj','c','lydian','dominant','d','mixolydian','subdominant','r_IV']]
+  # [{ method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'dorian', key_function => 'subdominant', key_roman => 'r_IV' },
+  #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'ionian', key_function => 'subdominant', key_roman => 'r_IV' },
+  #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'mixolydian', key_function => 'subdominant', key_roman => 'r_IV' },
+  #  ... ]
+  # Inspecting all the results, we see that the answers are D Dorian, D Ionian, and D Mixolydian.
+
+  # What chords do C major and A minor have in common?
+  $m = Music::ModalFunction->new(
+    mode_note    => 'c',
+    mode         => 'ionian',
+    key_note     => 'a',
+    key          => 'aeolian',
+  );
+  $results = $m->pivot_chord_keys; # 7 common chords
+
+  # What chords do C major and F♯ (G♭) major have in common?
+  $m = Music::ModalFunction->new(
+    mode_note    => 'c',
+    mode         => 'ionian',
+    key_note     => 'gb',
+    key          => 'ionian',
+  );
+  $results = $m->pivot_chord_keys; # There are no chords in common!
 
 =head1 DESCRIPTION
 
@@ -48,6 +66,10 @@ C<Music::ModalFunction> allows querying of a musical database of
 Prolog facts and rules that bind notes, chords, modes, keys and
 diatonic functionality. In this database, the facts are all called
 C<chord_key> and the rules are C<pivot_chord_keys> and C<roman_key>.
+
+Wikipedia puts it this way, "A common chord, in the theory of harmony,
+is a chord that is diatonic to more than one key or, in other words,
+is common to (shared by) two keys."
 
 To bind a value to a fact or rule argument, declare it in the object
 constructor. Unbound arguments will return all the possible values
@@ -105,6 +127,12 @@ C<tonic>, C<supertonic>, C<mediant>, C<subdominant>, C<dominant>, C<submediant>,
 
 C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
 
+=head2 hash_results
+
+Return the query results as a list of named hash references.
+
+Default: C<0>
+
 =head2 verbose
 
 Default: C<0>
@@ -119,6 +147,27 @@ has verbose => (
     is      => 'ro',
     isa     => sub { croak "$_[0] is not a boolean" unless $_[0] =~ /^[01]$/ },
     default => sub { 0 },
+);
+
+has hash_results => (
+    is      => 'ro',
+    isa     => sub { croak "$_[0] is not a boolean" unless $_[0] =~ /^[01]$/ },
+    default => sub { 0 },
+);
+
+has _chord_key => (
+    is      => 'ro',
+    default => sub { [qw(method chord_note chord key_note key key_function key_roman)] },
+);
+
+has _pivot_chord_keys => (
+    is      => 'ro',
+    default => sub { [qw(method chord_note chord mode_note mode mode_function mode_roman key_note key key_function key_roman)] },
+);
+
+has _roman_key => (
+    is      => 'ro',
+    default => sub { [qw(method mode mode_roman key key_roman)] },
 );
 
 has _modes => (
@@ -274,6 +323,9 @@ sub _build__prolog {
 
 Create a new C<Music::ModalFunction> object.
 
+If defined, argument values will be bound to a variable. Otherwise an
+unbound variable is used for the queries detailed below.
+
 =head2 chord_key
 
   $results = $m->chord_key;
@@ -290,9 +342,6 @@ in the key is the B<key_function> and basically indicates the relative
 scale position. The B<key_roman> argument serves as an indicator of
 both the chord quality and the position in the scale.
 
-If defined, argument values will be bound to a variable. Otherwise an
-unbound variable is used.
-
 =cut
 
 sub chord_key {
@@ -304,7 +353,7 @@ sub chord_key {
         defined $self->key          ? $self->key          : 'Key',
         defined $self->key_function ? $self->key_function : 'KeyFunction',
         defined $self->key_roman    ? $self->key_roman    : 'KeyRoman';
-    return $self->_querydb($query);
+    return $self->_querydb('chord_key', $query);
 }
 
 =head2 pivot_chord_keys
@@ -327,9 +376,6 @@ transformation (often a pivot). The function of the chord in the
 "destination" is B<key_function>. As with mode_roman, B<key_roman> is
 the resulting chord quality and scale position.
 
-If defined, argument values will be bound to a variable. Otherwise an
-unbound variable is used.
-
 =cut
 
 sub pivot_chord_keys {
@@ -345,7 +391,7 @@ sub pivot_chord_keys {
         defined $self->key           ? $self->key           : 'Key',
         defined $self->key_function  ? $self->key_function  : 'KeyFunction',
         defined $self->key_roman     ? $self->key_roman     : 'KeyRoman';
-    return $self->_querydb($query);
+    return $self->_querydb('pivot_chord_keys', $query);
 }
 
 =head2 roman_key
@@ -359,9 +405,6 @@ Constructor arguments:
 
   mode, mode_roman, key, key_roman
 
-If defined, argument values will be bound to a variable. Otherwise an
-unbound variable is used.
-
 =cut
 
 sub roman_key {
@@ -371,20 +414,29 @@ sub roman_key {
         defined $self->mode_roman ? $self->mode_roman : 'ModeRoman',
         defined $self->key        ? $self->key        : 'Key',
         defined $self->key_roman  ? $self->key_roman  : 'KeyRoman';
-    return $self->_querydb($query);
+    return $self->_querydb('roman_key', $query);
 }
 
 sub _querydb {
-    my ($self, $query) = @_;
+    my ($self, $method, $query) = @_;
 
-    warn "Query: $query\n" if $self->verbose;
+    warn "$method query: $query\n" if $self->verbose;
 
     $self->_prolog->query($query);
+
+    my $attr = '_' . $method;
 
     my @return;
 
     while (my $result = $self->_prolog->results) {
-        push @return, $result;
+        if ($self->hash_results) {
+            my %result;
+            @result{ @{ $self->$attr } } = @$result;
+            push @return, \%result;
+        }
+        else {
+            push @return, $result;
+        }
     }
 
     return \@return;
@@ -410,6 +462,8 @@ L<Music::Scales>
 L<https://en.wikipedia.org/wiki/Prolog>
 
 L<https://en.wikipedia.org/wiki/Common_chord_(music)>
+
+L<https://en.wikipedia.org/wiki/Closely_related_key>
 
 L<https://ology.github.io/2023/06/05/querying-a-music-theory-database/>
 is the write-up about using this module
