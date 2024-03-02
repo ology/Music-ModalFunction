@@ -5,7 +5,6 @@
 use strict;
 use warnings;
 
-use Data::Dumper::Compact qw(ddc);
 use Music::ModalFunction ();
 
 my $pitch1 = shift || 'c';
@@ -22,4 +21,8 @@ my $m = Music::ModalFunction->new(
     hash_results => 1,
 );
 my $results = $m->pivot_chord_keys;
-print ddc($results);
+
+print "Chords in common between $pitch1 $scale1 and $pitch2 $scale2:\n";
+for my $result (@$results) {
+    print "\t$result->{chord_note} $result->{chord}\n";
+}
