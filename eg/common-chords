@@ -1,10 +1,11 @@
 #!/usr/bin/env perl
 
-# Show common cords between two modes.
+# Show common cords and notes between two modes.
 
 use strict;
 use warnings;
 
+use Music::Chord::Note ();
 use Music::ModalFunction ();
 
 my $pitch1 = shift || 'c';
@@ -12,7 +13,8 @@ my $scale1 = shift || 'ionian';
 my $pitch2 = shift || 'd';
 my $scale2 = shift || 'ionian';
 
-# make a modal query object with the current chord and mode
+my $cn = Music::Chord::Note->new;
+
 my $m = Music::ModalFunction->new(
     mode_note    => $pitch1,
     mode         => $scale1,
@@ -24,5 +26,9 @@ my $results = $m->pivot_chord_keys;
 
 print "Chords in common between $pitch1 $scale1 and $pitch2 $scale2:\n";
 for my $result (@$results) {
-    print "\t$result->{chord_note} $result->{chord}\n";
+    my $flavor = $result->{chord} eq 'maj' ? '' : $result->{chord} eq 'min' ? 'm' : $result->{chord};
+    my $chord = uc($result->{chord_note}) . $flavor;
+    my @pitches = $cn->chord($chord);
+
+    print "\t$result->{chord_note} $result->{chord} = [@pitches]\n";
 }
