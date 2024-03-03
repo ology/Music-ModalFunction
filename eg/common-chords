@@ -9,8 +9,8 @@ use Music::ModalFunction ();
 
 my $pitch1 = shift || 'c';
 my $scale1 = shift || 'ionian';
-my $pitch2 = shift || 'a';
-my $scale2 = shift || 'aeolian';
+my $pitch2 = shift || 'd';
+my $scale2 = shift || 'ionian';
 
 # make a modal query object with the current chord and mode
 my $m = Music::ModalFunction->new(
