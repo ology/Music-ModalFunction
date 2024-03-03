@@ -29,5 +29,5 @@ for my $result (@$results) {
     my $flavor = $result->{chord} eq 'maj' ? '' : $result->{chord} eq 'min' ? 'm' : $result->{chord};
     my $chord = uc($result->{chord_note}) . $flavor;
     my @pitches = $cn->chord($chord);
-    print "\t$result->{chord_note} $result->{chord} = [@pitches]\n";
+    print "\t$chord = [@pitches]\n";
 }
