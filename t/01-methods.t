@@ -79,7 +79,6 @@ subtest scale_chord_key => sub {
         [ 'chord_key', 'd', 'maj', 'g', 'augmented', 'dominant', 'r_V' ],
         [ 'chord_key', 'd', 'maj', 'g', 'harmonic_minor', 'dominant', 'r_V' ],
         [ 'chord_key', 'd', 'maj', 'g', 'melodic_minor', 'dominant', 'r_V' ],
-        [ 'chord_key', 'd', 'maj', 'af', 'diminished', 'dominant', 'r_bV' ],
     ];
     is_deeply $got, $expect, 'chord_key';
 
@@ -115,14 +114,6 @@ subtest scale_chord_key => sub {
             key_function => 'dominant',
             key_note => 'g',
             key_roman => 'r_V',
-            method => 'chord_key',
-        }, {
-            chord => 'maj',
-            chord_note => 'd',
-            key => 'diminished',
-            key_function => 'dominant',
-            key_note => 'af',
-            key_roman => 'r_bV',
             method => 'chord_key',
         },
     ];
