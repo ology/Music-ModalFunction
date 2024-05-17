@@ -22,6 +22,7 @@ my $m = Music::ModalFunction->new(
     key_note     => $pitch2,
     key          => $scale2,
     hash_results => 1,
+#    use_scales   => 1,
 );
 my $results = $m->pivot_chord_keys;
 
