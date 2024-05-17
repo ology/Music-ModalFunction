@@ -63,7 +63,7 @@ use namespace::clean;
 =head1 DESCRIPTION
 
 C<Music::ModalFunction> allows querying of a musical database of
-Prolog facts and rules that bind notes, chords, modes, keys and
+Prolog facts and rules that bind notes, chords, modes/scales, keys and
 diatonic functionality. In this database, the facts are all called
 C<chord_key> and the rules are C<pivot_chord_keys> and C<roman_key>.
 
@@ -79,9 +79,9 @@ The essential question is, "Can a chord in one key function in a
 second?" Any parts of this open-ended question may be unbound, thereby
 resulting in all possible truths.
 
-nb: The names "mode" and "key" below, are both used to mean "mode 1"
-and "mode 2" respectively. But for some reason I chose to use "key"
-even though that is confusing. Argh! :|
+nb: The names "mode" (and "scale"), and "key" below, are both used to
+mean modes (or scales) 1 and 2, respectively. But for some reason I
+chose to use "key" even though that is confusing. Argh! :|
 
 =head1 ATTRIBUTES
 
