@@ -1,6 +1,8 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+
+0.0500 2024-05-17 15:49:58
     - Add the eg/common program.
     - Add non-modal scale processing.
     - Improve documentation.
