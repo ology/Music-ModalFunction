@@ -23,12 +23,15 @@ subtest defaults => sub {
     is_deeply [sort keys %{ $obj->_modes }],
         [qw(aeolian dorian ionian locrian lydian mixolydian phrygian)],
         '_modes';
+    is_deeply [sort keys %{ $obj->_scales }],
+        [qw(augmented blues diminished harmonic_minor melodic_minor pentatonic pentatonic_minor)],
+        '_scales';
     ok length($obj->_database), '_database';
     my @got = $obj->_database =~ /\n/g;
     is scalar(@got), 602, '_database';
 };
 
-subtest chord_key => sub {
+subtest mode_chord_key => sub {
     my $obj = new_ok 'Music::ModalFunction' => [
         chord_note   => 'd',
         chord        => 'maj',
@@ -60,6 +63,78 @@ subtest chord_key => sub {
     ];
     $got = $obj->chord_key;
     $expect = 18;
+    is scalar(@$got), $expect, 'chord_key';
+};
+
+
+subtest scale_chord_key => sub {
+    my $obj = new_ok 'Music::ModalFunction' => [
+        chord_note   => 'd',
+        chord        => 'maj',
+        key_function => 'dominant',
+        use_scales   => 1,
+    ];
+    my $got = $obj->chord_key;
+    my $expect = [
+        [ 'chord_key', 'd', 'maj', 'g', 'augmented', 'dominant', 'r_V' ],
+        [ 'chord_key', 'd', 'maj', 'g', 'harmonic_minor', 'dominant', 'r_V' ],
+        [ 'chord_key', 'd', 'maj', 'g', 'melodic_minor', 'dominant', 'r_V' ],
+        [ 'chord_key', 'd', 'maj', 'af', 'diminished', 'dominant', 'r_bV' ],
+    ];
+    is_deeply $got, $expect, 'chord_key';
+
+    $obj = new_ok 'Music::ModalFunction' => [
+        chord_note   => 'd',
+        chord        => 'maj',
+        key_function => 'dominant',
+        hash_results => 1,
+        use_scales   => 1,
+    ];
+    $got = $obj->chord_key;
+    $expect = [
+        {
+            chord => 'maj',
+            chord_note => 'd',
+            key => 'augmented',
+            key_function => 'dominant',
+            key_note => 'g',
+            key_roman => 'r_V',
+            method => 'chord_key',
+        }, {
+            chord => 'maj',
+            chord_note => 'd',
+            key => 'harmonic_minor',
+            key_function => 'dominant',
+            key_note => 'g',
+            key_roman => 'r_V',
+            method => 'chord_key',
+        }, {
+            chord => 'maj',
+            chord_note => 'd',
+            key => 'melodic_minor',
+            key_function => 'dominant',
+            key_note => 'g',
+            key_roman => 'r_V',
+            method => 'chord_key',
+        }, {
+            chord => 'maj',
+            chord_note => 'd',
+            key => 'diminished',
+            key_function => 'dominant',
+            key_note => 'af',
+            key_roman => 'r_bV',
+            method => 'chord_key',
+        },
+    ];
+    is_deeply $got, $expect, 'chord_key';
+
+    $obj = new_ok 'Music::ModalFunction' => [
+        chord_note => 'g',
+        chord      => 'maj',
+        use_scales => 1,
+    ];
+    $got = $obj->chord_key;
+    $expect = 15;
     is scalar(@$got), $expect, 'chord_key';
 };
 
