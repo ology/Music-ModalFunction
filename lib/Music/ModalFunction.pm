@@ -99,7 +99,7 @@ chose to use "key" even though that is confusing. Argh! :|
 
 =head2 chord_note
 
-C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
+C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
 
 * Sharps are not used - only flats.
 
@@ -109,7 +109,7 @@ C<maj>, C<min>, or C<dim>
 
 =head2 mode_note
 
-C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
+C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
 
 =head2 mode
 
@@ -125,7 +125,7 @@ C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
 
 =head2 key_note
 
-C<c>, C<df>, C<d>, C<ef>, C<e>, C<f>, C<gf>, C<g>, C<af>, C<a>, C<bf>, or C<b>
+C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
 
 =head2 key
 
