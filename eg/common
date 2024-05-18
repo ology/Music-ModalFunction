@@ -13,6 +13,7 @@ my $pitch1 = shift || 'c';
 my $scale1 = shift || 'ionian';
 my $pitch2 = shift || 'd';
 my $scale2 = shift || 'ionian';
+my $scales = shift // 0;
 
 my $cn = Music::Chord::Note->new;
 
@@ -22,7 +23,7 @@ my $m = Music::ModalFunction->new(
     key_note     => $pitch2,
     key          => $scale2,
     hash_results => 1,
-#    use_scales   => 1,
+    $scales ? (use_scales => 1) : (),
 );
 my $results = $m->pivot_chord_keys;
 
