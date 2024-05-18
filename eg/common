@@ -18,6 +18,7 @@ my $scales = shift // 0;
 my $cn = Music::Chord::Note->new;
 
 my $m = Music::ModalFunction->new(
+#    verbose      => 1,
     mode_note    => $pitch1,
     mode         => $scale1,
     key_note     => $pitch2,
