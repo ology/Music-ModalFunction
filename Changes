@@ -2,7 +2,8 @@ Revision history for Music-ModalFunction
 
 {{$NEXT}}
     - Fix abstract.
-    - Fix a diminished Roman.
+    - Fix the case of a diminished Roman.
+    - Improve documentation.
 
 0.0503 2024-05-18 04:07:09
     - Improve documentation.
