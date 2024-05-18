@@ -99,7 +99,8 @@ chose to use "key" even though that is confusing. Argh! :|
 
 =head2 chord_note, mode_note, key_note
 
-C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
+C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>,
+or C<b>
 
 * Sharps are not used - only flats.
 
@@ -109,15 +110,20 @@ C<maj>, C<min>, or C<dim>
 
 =head2 mode, key
 
-C<ionian>, C<dorian>, C<phrygian>, C<lydian>, C<mixolydian>, C<aeolian>, or C<locrian>
+C<ionian>, C<dorian>, C<phrygian>, C<lydian>, C<mixolydian>,
+C<aeolian>, or C<locrian>
 
 =head2 mode_function, key_function
 
-C<tonic>, C<supertonic>, C<mediant>, C<subdominant>, C<dominant>, C<submediant>, C<leading_tone>, or C<subtonic>
+C<tonic>, C<parallel minor>, C<flat2>, C<supertonic>, C<flat3>,
+C<mediant>, C<subdominant>, C<flat5>, C<dominant>, C<submediant>,
+C<leading_tone>, or C<subtonic>
 
 =head2 mode_roman, key_roman
 
-C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
+C<r_I>, C<r_i>, C<r_bii>, C<r_II>, C<r_ii>, C<r_bIII>, C<r_III>,
+C<r_iii>, C<r_IV>, C<r_bV>, C<r_V>, C<r_v>, C<r_VI>, C<r_vi>,
+C<r_vii>, or C<r_VII>.
 
 =head2 hash_results
 
@@ -183,7 +189,7 @@ sub _build__modes {
             { chord => 'dim', roman => 'r_vii', function => 'leading_tone' },
         ],
         dorian => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'min', roman => 'r_i',   function => 'parallel minor' },
             { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
             { chord => 'maj', roman => 'r_III', function => 'mediant' },
             { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
@@ -192,7 +198,7 @@ sub _build__modes {
             { chord => 'maj', roman => 'r_VII', function => 'subtonic' },
         ],
         phrygian => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'min', roman => 'r_i',   function => 'parallel minor' },
             { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
             { chord => 'maj', roman => 'r_III', function => 'mediant' },
             { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
@@ -219,7 +225,7 @@ sub _build__modes {
             { chord => 'maj', roman => 'r_VII', function => 'subtonic' },
         ],
         aeolian => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'min', roman => 'r_i',   function => 'parallel minor' },
             { chord => 'dim', roman => 'r_ii',  function => 'supertonic' },
             { chord => 'maj', roman => 'r_III', function => 'mediant' },
             { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
@@ -228,7 +234,7 @@ sub _build__modes {
             { chord => 'maj', roman => 'r_VII', function => 'subtonic' },
         ],
         locrian => [
-            { chord => 'dim', roman => 'r_i',   function => 'tonic' },
+            { chord => 'dim', roman => 'r_i',   function => 'parallel minor' },
             { chord => 'maj', roman => 'r_II',  function => 'supertonic' },
             { chord => 'min', roman => 'r_iii', function => 'mediant' },
             { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
@@ -242,7 +248,7 @@ sub _build__modes {
 sub _build__scales {
     return {
         harmonic_minor => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'min', roman => 'r_i',   function => 'parallel minor' },
             { chord => 'dim', roman => 'r_ii',  function => 'supertonic' },
             { chord => 'aug', roman => 'r_III', function => 'mediant' },
             { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
@@ -251,7 +257,7 @@ sub _build__scales {
             { chord => 'dim', roman => 'r_vii', function => 'subtonic' },
         ],
         melodic_minor => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'min', roman => 'r_i',   function => 'parallel minor' },
             { chord => 'min', roman => 'r_ii',  function => 'supertonic' },
             { chord => 'aug', roman => 'r_III', function => 'mediant' },
             { chord => 'maj', roman => 'r_IV',  function => 'subdominant' },
@@ -267,14 +273,14 @@ sub _build__scales {
             { chord => 'min', roman => 'r_vi',  function => 'submediant' },
         ],
         pentatonic_minor => [
-            { chord => 'min', roman => 'r_i',   function => 'tonic' },
+            { chord => 'min', roman => 'r_i',   function => 'parallel minor' },
             { chord => 'dim', roman => 'r_ii',  function => 'supertonic' },
             { chord => 'min', roman => 'r_iv',  function => 'subdominant' },
             { chord => 'min', roman => 'r_v',   function => 'dominant' },
             { chord => 'maj', roman => 'r_VI',  function => 'submediant' },
         ],
         blues => [
-            { chord => 'min',  roman => 'r_i',   function => 'tonic' },
+            { chord => 'min',  roman => 'r_i',   function => 'parallel minor' },
             { chord => 'maj',  roman => 'r_III', function => 'supertonic' },
             { chord => 'sus4', roman => 'r_IV',  function => 'subdominant' },
             { chord => 'maj',  roman => 'r_bV',  function => 'flat5' },
