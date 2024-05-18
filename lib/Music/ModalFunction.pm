@@ -19,19 +19,19 @@ use namespace::clean;
 
   # What chords do C major and A minor have in common?
   my $m = Music::ModalFunction->new(
-    mode_note    => 'c',
-    mode         => 'ionian',
-    key_note     => 'a',
-    key          => 'aeolian',
+    mode_note => 'c',
+    mode      => 'ionian',
+    key_note  => 'a',
+    key       => 'aeolian',
   );
   my $results = $m->pivot_chord_keys; # 7 common chords
 
   # What chords do C major and F♯ (G♭) major have in common?
   $m = Music::ModalFunction->new(
-    mode_note    => 'c',
-    mode         => 'ionian',
-    key_note     => 'gb',
-    key          => 'ionian',
+    mode_note => 'c',
+    mode      => 'ionian',
+    key_note  => 'gb',
+    key       => 'ionian',
   );
   $results = $m->pivot_chord_keys; # No chords in common!
 
