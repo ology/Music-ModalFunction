@@ -430,16 +430,6 @@ Constructor arguments:
 
   chord_note, chord, mode_note, mode, mode_function, mode_roman, key_note, key, key_function, key_roman
 
-Here, B<chord_note> and B<chord> together are the named chord defined
-within the context of the B<mode_note> and B<mode>. The chord's
-function in the mode is the B<mode_function> and basically indicates
-the relative scale position. The B<mode_roman> argument serves as an
-indicator of both the chord quality and the position in the scale. The
-B<key_note> and B<key> are the final "destination" of the query
-transformation (often a pivot). The function of the chord in the
-"destination" is B<key_function>. As with mode_roman, B<key_roman> is
-the resulting chord quality and scale position.
-
 =cut
 
 sub pivot_chord_keys {
