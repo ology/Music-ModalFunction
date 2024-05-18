@@ -321,10 +321,10 @@ sub _build__database {
         my ($mode_base) = map { lc } midi_format($base);
 
         # consider each mode or scale properties
-        for my $j (sort keys %$list) {
+        for my $item (sort keys %$list) {
             # get the notes of the base note mode or scale
-            my @notes = get_scale_notes($base, $j);
-#            warn "Basics: $base $j [@notes]\n" if $self->verbose;
+            my @notes = get_scale_notes($base, $item);
+#            warn "Basics: $base $item [@notes]\n" if $self->verbose;
 
             my @pitches; # notes suitable for the prolog database
 
@@ -341,18 +341,18 @@ sub _build__database {
                 # get the properties of the given mode or scale
                 my ($chord, $function, $roman);
                 if ($self->use_scales) {
-                    $chord    = $self->_scales->{$j}[$i]{chord};
-                    $function = $self->_scales->{$j}[$i]{function};
-                    $roman    = $self->_scales->{$j}[$i]{roman};
+                    $chord    = $self->_scales->{$item}[$i]{chord};
+                    $function = $self->_scales->{$item}[$i]{function};
+                    $roman    = $self->_scales->{$item}[$i]{roman};
                 }
                 else {
-                    $chord    = $self->_modes->{$j}[$i]{chord};
-                    $function = $self->_modes->{$j}[$i]{function};
-                    $roman    = $self->_modes->{$j}[$i]{roman};
+                    $chord    = $self->_modes->{$item}[$i]{chord};
+                    $function = $self->_modes->{$item}[$i]{function};
+                    $roman    = $self->_modes->{$item}[$i]{roman};
                 }
 
                 # append to the database of facts
-                $database .= "chord_key($pitch, $chord, $mode_base, $j, $function, $roman).\n"
+                $database .= "chord_key($pitch, $chord, $mode_base, $item, $function, $roman).\n"
                     if $chord && $function && $roman;
 
                 $i++;
