@@ -13,9 +13,10 @@ use MIDI::Util qw(setup_score midi_format);
 use Music::Chord::Progression ();
 use Music::ModalFunction ();
 
-my $pitch   = shift || 'C';
-my $scale   = shift || 'ionian';
-my $phrases = shift || 4;
+my $pitch    = shift || 'C';
+my $scale    = shift || 'ionian';
+my $phrases  = shift || 4;
+my $duration = shift || 'wn';
 
 my $score = setup_score();
 
@@ -32,7 +33,7 @@ for my $i (1 .. $phrases) {
 
     # add the chords to the score
     for my $chord (@$chords) {
-        $score->n('wn', midi_format(@$chord));
+        $score->n($duration, midi_format(@$chord));
     }
 
     # remember the last pitch and scale
