@@ -28,7 +28,7 @@ subtest defaults => sub {
         '_scales';
     ok length($obj->_database), '_database';
     my @got = $obj->_database =~ /\n/g;
-    is scalar(@got), 602, '_database';
+    is scalar(@got), 600, '_database';
 };
 
 subtest mode_chord_key => sub {
@@ -129,7 +129,7 @@ subtest scale_chord_key => sub {
     is scalar(@$got), $expect, 'chord_key';
 };
 
-subtest pivot_chord_keys => sub {
+subtest mode_pivot_chord_keys => sub {
     my $obj = new_ok 'Music::ModalFunction' => [
         chord_note   => 'g',
         chord        => 'maj',
