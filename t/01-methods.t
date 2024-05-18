@@ -333,11 +333,11 @@ subtest scale_pivot_chord_keys => sub {
     is scalar(@$got), $expect, 'pivot_chord_keys';
 
     $obj = Music::ModalFunction->new(
-        mode_note    => 'c',
-        mode         => 'diminished',
-        key_note     => 'c',
-        key          => 'harmonic_minor',
-        use_scales   => 1,
+        mode_note  => 'c',
+        mode       => 'diminished',
+        key_note   => 'c',
+        key        => 'harmonic_minor',
+        use_scales => 1,
     );
     $got = $obj->pivot_chord_keys;
     $expect = 2;
