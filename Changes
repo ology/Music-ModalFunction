@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Fix abstract.
 
 0.0503 2024-05-18 04:07:09
     - Improve documentation.
