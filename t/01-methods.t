@@ -279,7 +279,6 @@ subtest scale_pivot_chord_keys => sub {
     is scalar(@$got), $expect, 'pivot_chord_keys';
 };
 
-
 subtest roman_key => sub {
     my $obj = new_ok 'Music::ModalFunction' => [
         mode       => 'ionian',
