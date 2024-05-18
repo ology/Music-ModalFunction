@@ -2,6 +2,7 @@ Revision history for Music-ModalFunction
 
 {{$NEXT}}
     - Improve documentation.
+    - Clean code a bit.
 
 0.0502 2024-05-18 03:39:03
     - Fix 'b' flat instead of 'f' in docs.
