@@ -1,6 +1,6 @@
 package Music::ModalFunction;
 
-# ABSTRACT: Inspect musical modal functions
+# ABSTRACT: Query for modal and scalar musical functions
 
 our $VERSION = '0.0503';
 
