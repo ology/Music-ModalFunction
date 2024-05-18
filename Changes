@@ -1,6 +1,7 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Fix 'b' flat instead of 'f' in docs.
 
 0.0501 2024-05-17 22:45:32
     - Add scales pivot tests.
