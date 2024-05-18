@@ -335,7 +335,7 @@ sub _build__database {
                 push @pitches, map { lc } midi_format($n->format('isobase'));
             }
 
-            my $i = 0; # increment for each diatonic modes or scales
+            my $i = 0; # increment
 
             for my $pitch (@pitches) {
                 # get the properties of the given mode or scale
