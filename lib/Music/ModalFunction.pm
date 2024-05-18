@@ -283,7 +283,7 @@ sub _build__scales {
         ],
         diminished => [
             { chord => 'maj', roman => 'r_I',    function => 'tonic' },
-            { chord => 'dim', roman => 'r_bII',  function => 'flat2' },
+            { chord => 'dim', roman => 'r_bii',  function => 'flat2' },
             { chord => 'maj', roman => 'r_bIII', function => 'flat3' },
             { chord => 'dim', roman => 'r_iii',  function => 'mediant' },
             { chord => 'maj', roman => 'r_bV',   function => 'flat5' },
