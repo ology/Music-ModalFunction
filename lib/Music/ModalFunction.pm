@@ -2,7 +2,7 @@ package Music::ModalFunction;
 
 # ABSTRACT: Inspect musical modal functions
 
-our $VERSION = '0.0500';
+our $VERSION = '0.0501';
 
 use strictures 2;
 use AI::Prolog ();
@@ -59,6 +59,18 @@ use namespace::clean;
   #  { method => 'pivot_chord_keys', chord_note => 'g', chord => 'maj', mode_note => 'c', mode => 'ionian', mode_function => 'dominant', mode_roman => 'r_V', key_note => 'd', key => 'mixolydian', key_function => 'subdominant', key_roman => 'r_IV' },
   #  ... ]
   # Inspecting all the results, we see that the answers are D Dorian, D Ionian, and D Mixolydian.
+
+  # compare non-modal scales
+  $m = Music::ModalFunction->new(
+      mode_note  => 'c',
+      mode       => 'diminished',
+      key_note   => 'c',
+      key        => 'harmonic_minor',
+      use_scales => 1,
+  );
+  $results = $obj->pivot_chord_keys;
+  # [ 'pivot_chord_keys', 'd', 'dim', 'c', 'diminished', 'flat2', 'r_bII', 'c', 'harmonic_minor', 'supertonic', 'r_ii' ],
+  # [ 'pivot_chord_keys', 'b', 'dim', 'c', 'diminished', 'leading_tone', 'r_vii', 'c', 'harmonic_minor', 'subtonic', 'r_vii' ],
 
 =head1 DESCRIPTION
 
@@ -521,6 +533,7 @@ sub _querydb {
     my @return;
 
     while (my $result = $self->_prolog->results) {
+#warn __PACKAGE__,' L',__LINE__,' ',,"R: @$result\n";
         if ($self->hash_results) {
             my %result;
             @result{ @{ $self->$attr } } = @$result;
