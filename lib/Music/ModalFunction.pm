@@ -504,11 +504,11 @@ __END__
 
 The F<t/01-methods.t> and F<eg/*> files in this distribution
 
-L<Moo>
-
 L<AI::Prolog>
 
 L<MIDI::Util>
+
+L<Moo>
 
 L<Music::Note>
 
