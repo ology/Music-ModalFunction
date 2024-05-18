@@ -97,7 +97,7 @@ chose to use "key" even though that is confusing. Argh! :|
 
 =head1 ATTRIBUTES
 
-=head2 chord_note
+=head2 chord_note, mode_note, key_note
 
 C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
 
@@ -107,35 +107,15 @@ C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
 
 C<maj>, C<min>, or C<dim>
 
-=head2 mode_note
-
-C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
-
-=head2 mode
+=head2 mode, key
 
 C<ionian>, C<dorian>, C<phrygian>, C<lydian>, C<mixolydian>, C<aeolian>, or C<locrian>
 
-=head2 mode_function
+=head2 mode_function, key_function
 
 C<tonic>, C<supertonic>, C<mediant>, C<subdominant>, C<dominant>, C<submediant>, C<leading_tone>, or C<subtonic>
 
-=head2 mode_roman
-
-C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
-
-=head2 key_note
-
-C<c>, C<db>, C<d>, C<eb>, C<e>, C<f>, C<gb>, C<g>, C<ab>, C<a>, C<bb>, or C<b>
-
-=head2 key
-
-C<ionian>, C<dorian>, C<phrygian>, C<lydian>, C<mixolydian>, C<aeolian>, or C<locrian>
-
-=head2 key_function
-
-C<tonic>, C<supertonic>, C<mediant>, C<subdominant>, C<dominant>, C<submediant>, C<leading_tone>, or C<subtonic>
-
-=head2 key_roman
+=head2 mode_roman, key_roman
 
 C<r_I>, C<r_ii>, C<r_iii>, C<r_IV>, C<r_V>, C<r_vi>, or C<r_vii>
 
@@ -166,19 +146,7 @@ has [qw(chord_note chord mode_note mode mode_function mode_roman key_note key ke
     is => 'ro',
 );
 
-has verbose => (
-    is      => 'ro',
-    isa     => sub { croak "$_[0] is not a boolean" unless $_[0] =~ /^[01]$/ },
-    default => sub { 0 },
-);
-
-has use_scales => (
-    is      => 'ro',
-    isa     => sub { croak "$_[0] is not a boolean" unless $_[0] =~ /^[01]$/ },
-    default => sub { 0 },
-);
-
-has hash_results => (
+has [qw(verbose use_scales hash_results)] => (
     is      => 'ro',
     isa     => sub { croak "$_[0] is not a boolean" unless $_[0] =~ /^[01]$/ },
     default => sub { 0 },
