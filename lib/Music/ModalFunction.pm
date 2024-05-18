@@ -69,7 +69,7 @@ use namespace::clean;
       use_scales => 1,
   );
   $results = $m->pivot_chord_keys;
-  # [ 'pivot_chord_keys', 'd', 'dim', 'c', 'diminished', 'flat2', 'r_bII', 'c', 'harmonic_minor', 'supertonic', 'r_ii' ],
+  # [ 'pivot_chord_keys', 'd', 'dim', 'c', 'diminished', 'flat2', 'r_bii', 'c', 'harmonic_minor', 'supertonic', 'r_ii' ],
   # [ 'pivot_chord_keys', 'b', 'dim', 'c', 'diminished', 'leading_tone', 'r_vii', 'c', 'harmonic_minor', 'subtonic', 'r_vii' ],
 
 =head1 DESCRIPTION
