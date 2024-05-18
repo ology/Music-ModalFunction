@@ -167,9 +167,10 @@ has _roman_key => (
     default => sub { [qw(method mode mode_roman key key_roman)] },
 );
 
-has _modes => (
+has [qw(_modes _scales _database _prolog)] => (
     is => 'lazy',
 );
+
 sub _build__modes {
     return {
         ionian => [
@@ -238,9 +239,6 @@ sub _build__modes {
     }
 }
 
-has _scales => (
-    is => 'lazy',
-);
 sub _build__scales {
     return {
         harmonic_minor => [
@@ -304,9 +302,6 @@ sub _build__scales {
     }
 }
 
-has _database => (
-    is => 'lazy',
-);
 sub _build__database {
     my ($self) = @_;
 
@@ -379,9 +374,6 @@ RULES
     return $database;
 }
 
-has _prolog => (
-    is => 'lazy',
-);
 sub _build__prolog {
     my ($self) = @_;
     return AI::Prolog->new($self->_database);
