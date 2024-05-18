@@ -344,7 +344,7 @@ sub _build__database {
         for my $j (sort keys %$list) {
             # get the notes of the base note mode or scale
             my @notes = get_scale_notes($base, $j);
-            warn "Basics: $base $j [@notes]\n" if $self->verbose;
+#            warn "Basics: $base $j [@notes]\n" if $self->verbose;
 
             my @pitches; # notes suitable for the prolog database
 
@@ -381,7 +381,6 @@ sub _build__database {
     }
     # append the prolog rules
     $database .= <<'RULES';
-% Can a chord in one key function in a second?
 pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2Note, Key2, Key2Function, Key2Roman) :-
     % bind the chord to the function of the first key
     chord_key(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman),
@@ -390,13 +389,12 @@ pivot_chord_keys(ChordNote, Chord, Key1Note, Key1, Key1Function, Key1Roman, Key2
     % the functions cannot be the same
     Key1Function \= Key2Function.
 
-% TODO
 roman_key(Mode, ModeRoman, Key, KeyRoman) :-
     chord_key(_, _, _, Mode, ModeFunction, ModeRoman),
     chord_key(_, _, _, Key, KeyFunction, KeyRoman),
     ModeFunction \= KeyFunction.
 RULES
-    warn "Database: $database\n" if $self->verbose;
+#    warn "Database: $database\n" if $self->verbose;
 
     return $database;
 }
