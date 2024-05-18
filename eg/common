@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# Show common cords and notes between two modes.
+# Show common chords and notes between two modes.
 
 use strict;
 use warnings;
