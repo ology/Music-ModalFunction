@@ -68,7 +68,7 @@ use namespace::clean;
       key        => 'harmonic_minor',
       use_scales => 1,
   );
-  $results = $obj->pivot_chord_keys;
+  $results = $m->pivot_chord_keys;
   # [ 'pivot_chord_keys', 'd', 'dim', 'c', 'diminished', 'flat2', 'r_bII', 'c', 'harmonic_minor', 'supertonic', 'r_ii' ],
   # [ 'pivot_chord_keys', 'b', 'dim', 'c', 'diminished', 'leading_tone', 'r_vii', 'c', 'harmonic_minor', 'subtonic', 'r_vii' ],
 
