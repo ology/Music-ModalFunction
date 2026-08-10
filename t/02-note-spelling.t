@@ -18,9 +18,9 @@ subtest modes_spelled_flat => sub {
         'F# in G ionian is stored flat-spelled as gb';
 
     unlike $database, qr/\Qchord_key(fs,\E/,
-        'F# in G ionian is NOT stored in MIDI::Util s/f style (fs)';
+        'F# in G ionian is NOT stored in s/f format';
     unlike $database, qr/\Qchord_key(f#,\E/,
-        'F# in G ionian is NOT stored as an unconverted sharp (f#)';
+        'F# in G ionian is NOT stored as sharp';
 
     # D ionian's 7th degree is C#, stored as leading_tone (dim, r_vii).
     like $database,
@@ -28,9 +28,9 @@ subtest modes_spelled_flat => sub {
         'C# in D ionian is stored flat-spelled as db';
 
     unlike $database, qr/\Qchord_key(cs,\E/,
-        'C# in D ionian is NOT stored in MIDI::Util s/f style (cs)';
+        'C# in D ionian is NOT stored in s/f format';
     unlike $database, qr/\Qchord_key(c#,\E/,
-        'C# in D ionian is NOT stored as an unconverted sharp (c#)';
+        'C# in D ionian is NOT stored as sharp';
 };
 
 subtest scales_spelled_flat => sub {
@@ -43,9 +43,9 @@ subtest scales_spelled_flat => sub {
         'C# in D harmonic_minor is stored flat-spelled as db';
 
     unlike $database, qr/\Qchord_key(cs,\E/,
-        'C# in D harmonic_minor is NOT stored in MIDI::Util s/f style (cs)';
+        'C# in D harmonic_minor is NOT stored in s/f format';
     unlike $database, qr/\Qchord_key(c#,\E/,
-        'C# in D harmonic_minor is NOT stored as an unconverted sharp (c#)';
+        'C# in D harmonic_minor is NOT stored as sharp';
 };
 
 done_testing();
