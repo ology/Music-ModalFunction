@@ -1,10 +1,11 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
-    - Intelligently use `state` to not reload the whole world.
+    - Intelligently use `state` so as to not reload the whole world.
     - Make a fresh prolog engine per query, with the existing database.
     - Protect _private accessors.
-    - Rename the example perl script.
+    - Add a couple handy enharmonic tests.
+    - Rename the example perl script!
 
 0.0505 2026-08-09 20:50:44
     - Fix the midi_format() arguments.
