@@ -6,8 +6,7 @@ use Test::More;
 
 use_ok 'Music::ModalFunction';
 
-# The generated Prolog database is only correct if every note is spelled with flats
-# and never sharps.
+# The generated Prolog database is only correct if every note is spelled with flats and never sharps.
 
 subtest modes_spelled_flat => sub {
     my $obj = Music::ModalFunction->new;
