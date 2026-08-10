@@ -317,7 +317,7 @@ sub _build__scales {
 sub _build__database {
     my ($self) = @_;
     state %cache;
-    my $key = $self->use_scales ? 'scales' : 'modes';
+    my $key = ref($self) . ':' . ($self->use_scales ? 'scales' : 'modes');
     return $cache{$key} //= $self->_generate_database;
 }
 
