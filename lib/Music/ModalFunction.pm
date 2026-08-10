@@ -2,7 +2,7 @@ package Music::ModalFunction;
 
 # ABSTRACT: Query for modal and scalar musical functions
 
-our $VERSION = '0.0505';
+our $VERSION = '0.0600';
 
 use feature 'state';
 
