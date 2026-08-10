@@ -175,7 +175,7 @@ has _roman_key => (
     default => sub { [qw(method mode mode_roman key key_roman)] },
 );
 
-has [qw(_modes _scales _database _prolog)] => (
+has [qw(_modes _scales _database)] => (
     is => 'lazy',
 );
 
@@ -389,11 +389,6 @@ RULES
     return $database;
 }
 
-sub _build__prolog {
-    my ($self) = @_;
-    return AI::Prolog->new($self->_database);
-}
-
 =head1 METHODS
 
 =head2 new
@@ -491,13 +486,16 @@ sub _querydb {
 
     warn "$method query: $query\n" if $self->verbose;
 
-    $self->_prolog->query($query);
+    # A fresh engine per query avoids relying on AI::Prolog to fully reset
+    # its internal state between unrelated queries on a shared engine
+    my $prolog = AI::Prolog->new($self->_database);
+    $prolog->query($query);
 
     my $attr = '_' . $method;
 
     my @return;
 
-    while (my $result = $self->_prolog->results) {
+    while (my $result = $prolog->results) {
 #warn __PACKAGE__,' L',__LINE__,' ',,"R: @$result\n";
         if ($self->hash_results) {
             my %result;

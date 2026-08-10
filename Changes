@@ -2,6 +2,7 @@ Revision history for Music-ModalFunction
 
 {{$NEXT}}
     - Intelligently use `state` to not reload the whole world.
+    - Make a fresh prolog engine per query, with the existing database.
     - Rename the example perl script.
 
 0.0505 2026-08-09 20:50:44
