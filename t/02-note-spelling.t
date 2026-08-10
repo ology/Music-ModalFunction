@@ -8,22 +8,13 @@ use_ok 'Music::ModalFunction';
 
 # Music::ModalFunction's generated Prolog database is only correct if every
 # note ends up spelled with flats (e.g. "gb", "db"), never sharps ("g#") or
-# MIDI::Util's own "s/f" substitution style ("gs", "df"). That spelling comes
-# from an interaction with MIDI::Util::midi_format() whose flag-argument
-# behavior changed once already (see MIDI::Util 0.1305 Changes: "Only
-# substitute MIDI s/f for #/b if a flag is given as the first argument").
-# dist.ini pins "MIDI::Util = 0.1305" as a floor, but a *future* MIDI::Util
-# release could change that behavior again without lowering its own version
-# floor below what we require. This test catches that silently, at the data
-# level, rather than relying on the pinned version number alone.
+# MIDI::Util's own "s/f" substitution style ("gs", "df").
 
 subtest modes_spelled_flat => sub {
     my $obj = Music::ModalFunction->new;
     my $database = $obj->_database;
 
-    # G ionian's 7th degree is F#, stored as the "leading_tone" (dim, r_vii)
-    # chord. If sharp-to-flat spelling is working, that fact is written as
-    # "gb" -- never "g#" (unconverted sharp) or "fs" (MIDI::Util's s/f style).
+    # G ionian's 7th degree is F#, stored as the "leading_tone" (dim, r_vii) chord.
     like $database,
         qr/\Qchord_key(gb, dim, g, ionian, leading_tone, r_vii).\E/,
         'F# in G ionian is stored flat-spelled as gb';
