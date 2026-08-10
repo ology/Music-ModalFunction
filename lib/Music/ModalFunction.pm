@@ -4,6 +4,8 @@ package Music::ModalFunction;
 
 our $VERSION = '0.0505';
 
+use feature 'state';
+
 use strictures 2;
 use AI::Prolog ();
 use Carp qw(croak);
@@ -309,6 +311,13 @@ sub _build__scales {
 }
 
 sub _build__database {
+    my ($self) = @_;
+    state %cache;
+    my $key = $self->use_scales ? 'scales' : 'modes';
+    return $cache{$key} //= $self->_generate_database;
+}
+
+sub _generate_database {
     my ($self) = @_;
 
     # consider every note
