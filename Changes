@@ -1,6 +1,8 @@
 Revision history for Music-ModalFunction
 
 {{$NEXT}}
+    - Fix the midi_format() arguments.
+    - Fix the eg/common program slightly!
 
 0.0504 2024-05-18 04:41:05
     - Fix abstract.

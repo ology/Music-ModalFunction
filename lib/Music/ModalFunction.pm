@@ -2,7 +2,7 @@ package Music::ModalFunction;
 
 # ABSTRACT: Query for modal and scalar musical functions
 
-our $VERSION = '0.0504';
+our $VERSION = '0.0505';
 
 use strictures 2;
 use AI::Prolog ();
@@ -319,7 +319,7 @@ sub _build__database {
 
     # build a prolog fact for each base note
     for my $base (@chromatic) {
-        my ($mode_base) = map { lc } midi_format($base);
+        my ($mode_base) = map { lc } midi_format(0, $base);
 
         # consider each mode or scale properties
         for my $item (sort keys %$list) {
@@ -333,7 +333,7 @@ sub _build__database {
             for my $note (@notes) {
                 my $n = Music::Note->new($note, 'isobase');
                 $n->en_eq('flat') if $note =~ /#/;
-                push @pitches, map { lc } midi_format($n->format('isobase'));
+                push @pitches, map { lc } midi_format(0, $n->format('isobase'));
             }
 
             my $i = 0; # increment
