@@ -161,22 +161,26 @@ has [qw(verbose use_scales hash_results)] => (
 );
 
 has _chord_key => (
-    is      => 'ro',
-    default => sub { [qw(method chord_note chord key_note key key_function key_roman)] },
+    is       => 'ro',
+    init_arg => undef,
+    default  => sub { [qw(method chord_note chord key_note key key_function key_roman)] },
 );
 
 has _pivot_chord_keys => (
-    is      => 'ro',
-    default => sub { [qw(method chord_note chord mode_note mode mode_function mode_roman key_note key key_function key_roman)] },
+    is       => 'ro',
+    init_arg => undef,
+    default  => sub { [qw(method chord_note chord mode_note mode mode_function mode_roman key_note key key_function key_roman)] },
 );
 
 has _roman_key => (
-    is      => 'ro',
-    default => sub { [qw(method mode mode_roman key key_roman)] },
+    is       => 'ro',
+    init_arg => undef,
+    default  => sub { [qw(method mode mode_roman key key_roman)] },
 );
 
 has [qw(_modes _scales _database)] => (
-    is => 'lazy',
+    is       => 'lazy',
+    init_arg => undef,
 );
 
 sub _build__modes {
