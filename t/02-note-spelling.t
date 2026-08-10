@@ -6,9 +6,8 @@ use Test::More;
 
 use_ok 'Music::ModalFunction';
 
-# Music::ModalFunction's generated Prolog database is only correct if every
-# note ends up spelled with flats (e.g. "gb", "db"), never sharps ("g#") or
-# MIDI::Util's own "s/f" substitution style ("gs", "df").
+# The generated Prolog database is only correct if every note is spelled with flats
+# and never sharps.
 
 subtest modes_spelled_flat => sub {
     my $obj = Music::ModalFunction->new;
